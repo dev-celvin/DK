@@ -1,0 +1,223 @@
+
+zako.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm1_Main
+  rotate: true
+  xy: 342, 763
+  size: 73, 179
+  orig: 75, 181
+  offset: 1, 1
+  index: -1
+arm_1_Sub
+  rotate: true
+  xy: 100, 7
+  size: 74, 102
+  orig: 76, 104
+  offset: 1, 1
+  index: -1
+arm_2_Main
+  rotate: false
+  xy: 379, 399
+  size: 70, 90
+  orig: 72, 92
+  offset: 1, 1
+  index: -1
+arm_2_Sub
+  rotate: false
+  xy: 451, 400
+  size: 69, 89
+  orig: 71, 91
+  offset: 1, 1
+  index: -1
+body_down
+  rotate: false
+  xy: 422, 652
+  size: 123, 109
+  orig: 125, 111
+  offset: 1, 1
+  index: -1
+body_up
+  rotate: false
+  xy: 489, 535
+  size: 86, 115
+  orig: 88, 117
+  offset: 1, 1
+  index: -1
+cap
+  rotate: true
+  xy: 2, 464
+  size: 251, 130
+  orig: 253, 132
+  offset: 1, 1
+  index: -1
+effect/blood
+  rotate: false
+  xy: 801, 831
+  size: 176, 191
+  orig: 200, 200
+  offset: 0, 1
+  index: -1
+effect/blood1
+  rotate: true
+  xy: 269, 512
+  size: 159, 112
+  orig: 200, 200
+  offset: 22, 53
+  index: -1
+effect/blood2
+  rotate: true
+  xy: 397, 838
+  size: 184, 200
+  orig: 200, 200
+  offset: 16, 0
+  index: -1
+effect/blood3
+  rotate: true
+  xy: 2, 83
+  size: 185, 178
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+effect/blood4
+  rotate: false
+  xy: 162, 673
+  size: 178, 166
+  orig: 200, 200
+  offset: 22, 0
+  index: -1
+effect/blood5
+  rotate: false
+  xy: 599, 822
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+effect/blood6
+  rotate: true
+  xy: 172, 316
+  size: 189, 98
+  orig: 200, 200
+  offset: 11, 62
+  index: -1
+effect/blood7
+  rotate: true
+  xy: 2, 270
+  size: 192, 168
+  orig: 200, 200
+  offset: 0, 13
+  index: -1
+effect/blood8
+  rotate: false
+  xy: 204, 23
+  size: 71, 76
+  orig: 200, 200
+  offset: 74, 67
+  index: -1
+effect/blood9
+  rotate: false
+  xy: 342, 673
+  size: 78, 88
+  orig: 200, 200
+  offset: 70, 59
+  index: -1
+foot_Main
+  rotate: false
+  xy: 182, 101
+  size: 75, 34
+  orig: 77, 36
+  offset: 1, 1
+  index: -1
+foot_Sub
+  rotate: false
+  xy: 383, 491
+  size: 95, 38
+  orig: 97, 40
+  offset: 1, 1
+  index: -1
+hand_main
+  rotate: false
+  xy: 979, 839
+  size: 43, 50
+  orig: 45, 52
+  offset: 1, 1
+  index: -1
+hand_sub
+  rotate: false
+  xy: 979, 795
+  size: 43, 42
+  orig: 45, 44
+  offset: 1, 1
+  index: -1
+head
+  rotate: false
+  xy: 383, 531
+  size: 104, 119
+  orig: 106, 121
+  offset: 1, 1
+  index: -1
+item
+  rotate: false
+  xy: 273, 101
+  size: 109, 71
+  orig: 111, 73
+  offset: 1, 1
+  index: -1
+katana_hokoku
+  rotate: false
+  xy: 2, 2
+  size: 96, 79
+  orig: 98, 81
+  offset: 1, 1
+  index: -1
+katana_temoti
+  rotate: false
+  xy: 979, 891
+  size: 40, 131
+  orig: 42, 133
+  offset: 1, 1
+  index: -1
+katana_yayiba
+  rotate: false
+  xy: 134, 507
+  size: 133, 164
+  orig: 135, 166
+  offset: 1, 1
+  index: -1
+leg1_Sub
+  rotate: false
+  xy: 273, 174
+  size: 110, 158
+  orig: 112, 160
+  offset: 1, 1
+  index: -1
+leg2_Sub
+  rotate: false
+  xy: 2, 717
+  size: 158, 305
+  orig: 160, 307
+  offset: 1, 1
+  index: -1
+leg_1_Main
+  rotate: false
+  xy: 182, 137
+  size: 89, 177
+  orig: 91, 179
+  offset: 1, 1
+  index: -1
+leg_2_Main
+  rotate: false
+  xy: 272, 334
+  size: 105, 176
+  orig: 107, 178
+  offset: 1, 1
+  index: -1
+pifeng
+  rotate: false
+  xy: 162, 841
+  size: 233, 181
+  orig: 235, 183
+  offset: 1, 1
+  index: -1

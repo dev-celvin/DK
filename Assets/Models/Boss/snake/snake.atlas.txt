@@ -1,0 +1,76 @@
+
+snake.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1/1
+  rotate: false
+  xy: 2, 33
+  size: 41, 66
+  orig: 41, 66
+  offset: 0, 0
+  index: -1
+1/3
+  rotate: false
+  xy: 734, 258
+  size: 46, 43
+  orig: 46, 43
+  offset: 0, 0
+  index: -1
+1/5
+  rotate: false
+  xy: 2, 2
+  size: 27, 29
+  orig: 27, 29
+  offset: 0, 0
+  index: -1
+1/ama_main
+  rotate: false
+  xy: 2, 101
+  size: 205, 200
+  orig: 205, 200
+  offset: 0, 0
+  index: -1
+1/arm1_main
+  rotate: false
+  xy: 209, 124
+  size: 184, 177
+  orig: 184, 177
+  offset: 0, 0
+  index: -1
+1/arm2_main
+  rotate: false
+  xy: 903, 803
+  size: 111, 162
+  orig: 111, 162
+  offset: 0, 0
+  index: -1
+1/body
+  rotate: false
+  xy: 2, 303
+  size: 899, 662
+  orig: 899, 662
+  offset: 0, 0
+  index: -1
+1/head
+  rotate: false
+  xy: 395, 126
+  size: 159, 175
+  orig: 159, 175
+  offset: 0, 0
+  index: -1
+1/kazari
+  rotate: false
+  xy: 556, 145
+  size: 176, 156
+  orig: 176, 156
+  offset: 0, 0
+  index: -1
+1/mouth
+  rotate: false
+  xy: 903, 762
+  size: 45, 39
+  orig: 45, 40
+  offset: 0, 1
+  index: -1

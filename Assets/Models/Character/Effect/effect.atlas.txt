@@ -1,0 +1,250 @@
+
+effect.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect/ci/1
+  rotate: false
+  xy: 541, 14
+  size: 191, 49
+  orig: 193, 51
+  offset: 1, 1
+  index: -1
+effect/ci/dragon2
+  rotate: true
+  xy: 221, 2
+  size: 205, 189
+  orig: 214, 198
+  offset: 8, 1
+  index: -1
+effect/ci/tiger
+  rotate: false
+  xy: 683, 593
+  size: 312, 210
+  orig: 322, 236
+  offset: 10, 0
+  index: -1
+effect/hadoken/1058-10
+  rotate: false
+  xy: 554, 159
+  size: 325, 215
+  orig: 330, 217
+  offset: 4, 1
+  index: -1
+effect/hadoken/1058-3
+  rotate: true
+  xy: 2, 338
+  size: 329, 218
+  orig: 335, 219
+  offset: 5, 1
+  index: -1
+effect/hadoken/1058-4
+  rotate: false
+  xy: 310, 805
+  size: 330, 217
+  orig: 335, 219
+  offset: 4, 1
+  index: -1
+effect/hadoken/1058-5
+  rotate: false
+  xy: 222, 209
+  size: 330, 216
+  orig: 335, 218
+  offset: 4, 1
+  index: -1
+effect/hadoken/1058-6
+  rotate: true
+  xy: 2, 6
+  size: 330, 217
+  orig: 335, 219
+  offset: 4, 1
+  index: -1
+effect/hadoken/1058-7
+  rotate: false
+  xy: 642, 805
+  size: 330, 217
+  orig: 335, 217
+  offset: 4, 0
+  index: -1
+effect/hadoken/1058-8
+  rotate: false
+  xy: 222, 427
+  size: 330, 217
+  orig: 335, 218
+  offset: 4, 1
+  index: -1
+effect/hadoken/1058-9
+  rotate: false
+  xy: 554, 376
+  size: 330, 215
+  orig: 335, 217
+  offset: 4, 1
+  index: -1
+effect/hadoken/12
+  rotate: false
+  xy: 2, 669
+  size: 306, 353
+  orig: 500, 500
+  offset: 103, 128
+  index: -1
+effect/hadoken/22 (2)
+  rotate: false
+  xy: 541, 107
+  size: 359, 50
+  orig: 367, 64
+  offset: 8, 6
+  index: -1
+effect/jianren/1
+  rotate: true
+  xy: 412, 37
+  size: 170, 127
+  orig: 172, 129
+  offset: 1, 1
+  index: -1
+effect/jianren/2
+  rotate: false
+  xy: 768, 12
+  size: 139, 93
+  orig: 141, 95
+  offset: 1, 1
+  index: -1
+effect/jianren/3
+  rotate: true
+  xy: 881, 186
+  size: 188, 69
+  orig: 190, 71
+  offset: 1, 1
+  index: -1
+effect/jianren/4
+  rotate: true
+  xy: 952, 215
+  size: 162, 70
+  orig: 164, 72
+  offset: 1, 1
+  index: -1
+effect/jianren/5
+  rotate: true
+  xy: 974, 863
+  size: 159, 25
+  orig: 161, 27
+  offset: 1, 1
+  index: -1
+effect/jianren/5 (2)
+  rotate: false
+  xy: 541, 65
+  size: 225, 40
+  orig: 227, 42
+  offset: 1, 1
+  index: -1
+effect/jianren/6 (2)
+  rotate: true
+  xy: 909, 17
+  size: 167, 92
+  orig: 169, 94
+  offset: 1, 1
+  index: -1
+effect/jianren/8
+  rotate: true
+  xy: 310, 646
+  size: 157, 371
+  orig: 159, 373
+  offset: 1, 1
+  index: -1
+effect/jianren/9
+  rotate: true
+  xy: 886, 379
+  size: 212, 127
+  orig: 214, 129
+  offset: 1, 1
+  index: -1
+
+effect2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect/ci/dragon1
+  rotate: true
+  xy: 2, 2
+  size: 142, 219
+  orig: 144, 221
+  offset: 1, 1
+  index: -1
+effect/hadoken/1058-1
+  rotate: false
+  xy: 2, 582
+  size: 320, 214
+  orig: 335, 216
+  offset: 14, 1
+  index: -1
+effect/hadoken/1058-11
+  rotate: false
+  xy: 328, 802
+  size: 314, 213
+  orig: 319, 216
+  offset: 4, 2
+  index: -1
+effect/hadoken/1058-12
+  rotate: false
+  xy: 2, 146
+  size: 310, 214
+  orig: 317, 216
+  offset: 6, 1
+  index: -1
+effect/hadoken/1058-2
+  rotate: false
+  xy: 2, 798
+  size: 324, 217
+  orig: 335, 219
+  offset: 10, 1
+  index: -1
+effect/hadoken/331
+  rotate: false
+  xy: 320, 390
+  size: 185, 190
+  orig: 250, 250
+  offset: 33, 37
+  index: -1
+effect/hadoken/332
+  rotate: false
+  xy: 644, 823
+  size: 202, 192
+  orig: 250, 250
+  offset: 19, 31
+  index: -1
+effect/hadoken/333
+  rotate: true
+  xy: 314, 168
+  size: 192, 191
+  orig: 250, 250
+  offset: 28, 29
+  index: -1
+effect/hadoken/334
+  rotate: false
+  xy: 842, 629
+  size: 180, 192
+  orig: 250, 250
+  offset: 29, 29
+  index: -1
+effect/jianren/6
+  rotate: false
+  xy: 848, 899
+  size: 104, 116
+  orig: 106, 118
+  offset: 1, 1
+  index: -1
+effect/jianren/7
+  rotate: false
+  xy: 2, 362
+  size: 316, 218
+  orig: 318, 220
+  offset: 1, 1
+  index: -1
+effect/jianren/w1
+  rotate: true
+  xy: 644, 629
+  size: 192, 196
+  orig: 194, 198
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,376 @@
+
+ashikga.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+3
+  rotate: false
+  xy: 2, 123
+  size: 706, 898
+  orig: 917, 904
+  offset: 125, 0
+  index: -1
+arm2_L
+  rotate: true
+  xy: 914, 353
+  size: 99, 96
+  orig: 100, 96
+  offset: 0, 0
+  index: -1
+arm2_R
+  rotate: false
+  xy: 947, 502
+  size: 68, 80
+  orig: 70, 91
+  offset: 2, 10
+  index: -1
+arm_L
+  rotate: false
+  xy: 914, 137
+  size: 82, 116
+  orig: 83, 116
+  offset: 0, 0
+  index: -1
+beishen/body
+  rotate: true
+  xy: 710, 750
+  size: 271, 263
+  orig: 272, 263
+  offset: 1, 0
+  index: -1
+beishen/foot_L
+  rotate: true
+  xy: 975, 872
+  size: 100, 43
+  orig: 100, 43
+  offset: 0, 0
+  index: -1
+beishen/foot_R
+  rotate: true
+  xy: 975, 770
+  size: 100, 43
+  orig: 100, 43
+  offset: 0, 0
+  index: -1
+beishen/katana_bing
+  rotate: true
+  xy: 878, 68
+  size: 60, 141
+  orig: 61, 142
+  offset: 1, 1
+  index: -1
+beishen/katana_home
+  rotate: false
+  xy: 438, 25
+  size: 438, 96
+  orig: 440, 96
+  offset: 1, 0
+  index: -1
+beishen/katana_hu
+  rotate: false
+  xy: 946, 26
+  size: 75, 40
+  orig: 75, 44
+  offset: 0, 4
+  index: -1
+beishen/skirt
+  rotate: true
+  xy: 710, 130
+  size: 322, 202
+  orig: 322, 203
+  offset: 0, 1
+  index: -1
+body2
+  rotate: false
+  xy: 947, 454
+  size: 72, 46
+  orig: 72, 46
+  offset: 0, 0
+  index: -1
+effect/14
+  rotate: false
+  xy: 914, 255
+  size: 96, 96
+  orig: 98, 128
+  offset: 0, 3
+  index: -1
+effect/15
+  rotate: true
+  xy: 975, 974
+  size: 47, 45
+  orig: 62, 69
+  offset: 5, 7
+  index: -1
+effect/16
+  rotate: false
+  xy: 878, 2
+  size: 66, 64
+  orig: 72, 67
+  offset: 2, 3
+  index: -1
+effect/18
+  rotate: true
+  xy: 328, 24
+  size: 97, 108
+  orig: 99, 108
+  offset: 2, 0
+  index: -1
+effect/3
+  rotate: true
+  xy: 438, 4
+  size: 19, 86
+  orig: 64, 93
+  offset: 21, 7
+  index: -1
+leg_L
+  rotate: true
+  xy: 169, 8
+  size: 113, 157
+  orig: 113, 158
+  offset: 0, 1
+  index: -1
+leg_R
+  rotate: true
+  xy: 2, 7
+  size: 114, 165
+  orig: 115, 165
+  offset: 0, 0
+  index: -1
+skirt
+  rotate: false
+  xy: 710, 454
+  size: 235, 294
+  orig: 235, 294
+  offset: 0, 0
+  index: -1
+xiu2_L
+  rotate: true
+  xy: 947, 584
+  size: 164, 73
+  orig: 164, 73
+  offset: 0, 0
+  index: -1
+
+ashikga2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_R
+  rotate: false
+  xy: 795, 610
+  size: 87, 83
+  orig: 90, 88
+  offset: 0, 4
+  index: -1
+ashikga-skill_720
+  rotate: false
+  xy: 2, 483
+  size: 661, 539
+  orig: 662, 621
+  offset: 0, 52
+  index: -1
+beishen/arm2_L
+  rotate: false
+  xy: 211, 130
+  size: 96, 92
+  orig: 103, 93
+  offset: 7, 1
+  index: -1
+beishen/arm_L
+  rotate: false
+  xy: 530, 333
+  size: 146, 148
+  orig: 147, 148
+  offset: 0, 0
+  index: -1
+beishen/arm_R
+  rotate: false
+  xy: 678, 214
+  size: 146, 148
+  orig: 147, 148
+  offset: 1, 0
+  index: -1
+beishen/hand_L
+  rotate: false
+  xy: 234, 2
+  size: 54, 63
+  orig: 54, 64
+  offset: 0, 0
+  index: -1
+beishen/head
+  rotate: false
+  xy: 341, 337
+  size: 187, 144
+  orig: 189, 144
+  offset: 1, 0
+  index: -1
+beishen/moji
+  rotate: false
+  xy: 448, 94
+  size: 67, 110
+  orig: 67, 110
+  offset: 0, 0
+  index: -1
+beishen/xiu_L
+  rotate: false
+  xy: 211, 224
+  size: 128, 257
+  orig: 128, 257
+  offset: 0, 0
+  index: -1
+beishen/xiu_R
+  rotate: false
+  xy: 665, 533
+  size: 128, 257
+  orig: 128, 257
+  offset: 0, 0
+  index: -1
+beishen/yayiba
+  rotate: false
+  xy: 2, 70
+  size: 207, 411
+  orig: 207, 412
+  offset: 0, 1
+  index: -1
+body
+  rotate: false
+  xy: 665, 792
+  size: 166, 230
+  orig: 166, 230
+  offset: 0, 0
+  index: -1
+effect/1
+  rotate: true
+  xy: 944, 765
+  size: 55, 37
+  orig: 100, 100
+  offset: 24, 35
+  index: -1
+effect/1 hikari
+  rotate: false
+  xy: 986, 953
+  size: 26, 69
+  orig: 26, 69
+  offset: 0, 0
+  index: -1
+effect/11
+  rotate: false
+  xy: 795, 695
+  size: 91, 95
+  orig: 99, 95
+  offset: 1, 0
+  index: -1
+effect/12
+  rotate: true
+  xy: 625, 95
+  size: 57, 40
+  orig: 72, 55
+  offset: 6, 11
+  index: -1
+effect/13
+  rotate: false
+  xy: 517, 96
+  size: 106, 56
+  orig: 115, 80
+  offset: 2, 16
+  index: -1
+effect/19
+  rotate: false
+  xy: 522, 154
+  size: 154, 177
+  orig: 250, 250
+  offset: 51, 64
+  index: -1
+effect/2
+  rotate: false
+  xy: 888, 758
+  size: 54, 62
+  orig: 66, 81
+  offset: 7, 14
+  index: -1
+effect/4
+  rotate: true
+  xy: 795, 565
+  size: 43, 90
+  orig: 75, 90
+  offset: 14, 0
+  index: -1
+effect/5
+  rotate: true
+  xy: 380, 25
+  size: 40, 83
+  orig: 73, 92
+  offset: 18, 9
+  index: -1
+effect/6
+  rotate: true
+  xy: 290, 24
+  size: 41, 88
+  orig: 89, 112
+  offset: 22, 9
+  index: -1
+foot_L
+  rotate: false
+  xy: 211, 85
+  size: 96, 43
+  orig: 96, 44
+  offset: 0, 0
+  index: -1
+hand_L
+  rotate: true
+  xy: 175, 2
+  size: 63, 57
+  orig: 63, 57
+  offset: 0, 0
+  index: -1
+hand_R
+  rotate: true
+  xy: 888, 698
+  size: 58, 54
+  orig: 58, 54
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 833, 822
+  size: 200, 151
+  orig: 200, 151
+  offset: 0, 0
+  index: -1
+leg2_L
+  rotate: true
+  xy: 678, 75
+  size: 137, 152
+  orig: 138, 154
+  offset: 1, 2
+  index: -1
+leg2_R
+  rotate: false
+  xy: 309, 67
+  size: 137, 137
+  orig: 138, 137
+  offset: 1, 0
+  index: -1
+xiu1_L
+  rotate: true
+  xy: 678, 364
+  size: 167, 153
+  orig: 167, 154
+  offset: 0, 1
+  index: -1
+xiu1_R
+  rotate: false
+  xy: 341, 206
+  size: 179, 129
+  orig: 180, 129
+  offset: 0, 0
+  index: -1
+xiu2_R
+  rotate: false
+  xy: 2, 12
+  size: 171, 56
+  orig: 171, 56
+  offset: 0, 0
+  index: -1

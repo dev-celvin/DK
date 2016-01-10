@@ -1,0 +1,258 @@
+
+enemy.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_R2
+  rotate: true
+  xy: 517, 433
+  size: 67, 112
+  orig: 69, 114
+  offset: 1, 1
+  index: -1
+body
+  rotate: true
+  xy: 722, 848
+  size: 149, 211
+  orig: 151, 213
+  offset: 1, 1
+  index: -1
+cap
+  rotate: true
+  xy: 2, 337
+  size: 251, 130
+  orig: 253, 132
+  offset: 1, 1
+  index: -1
+effect/2
+  rotate: false
+  xy: 384, 436
+  size: 131, 67
+  orig: 200, 200
+  offset: 38, 66
+  index: -1
+effect/blood
+  rotate: false
+  xy: 357, 806
+  size: 176, 191
+  orig: 200, 200
+  offset: 0, 1
+  index: -1
+effect/blood1
+  rotate: true
+  xy: 305, 154
+  size: 159, 112
+  orig: 200, 200
+  offset: 22, 53
+  index: -1
+effect/blood2
+  rotate: false
+  xy: 155, 595
+  size: 184, 200
+  orig: 200, 200
+  offset: 16, 0
+  index: -1
+effect/blood3
+  rotate: false
+  xy: 535, 819
+  size: 185, 178
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+effect/blood4
+  rotate: true
+  xy: 216, 415
+  size: 178, 166
+  orig: 200, 200
+  offset: 22, 0
+  index: -1
+effect/blood5
+  rotate: false
+  xy: 155, 797
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+effect/blood6
+  rotate: false
+  xy: 216, 315
+  size: 189, 98
+  orig: 200, 200
+  offset: 11, 62
+  index: -1
+effect/blood7
+  rotate: true
+  xy: 2, 143
+  size: 192, 168
+  orig: 200, 200
+  offset: 0, 13
+  index: -1
+effect/blood8
+  rotate: false
+  xy: 419, 130
+  size: 71, 76
+  orig: 200, 200
+  offset: 74, 67
+  index: -1
+effect/blood9
+  rotate: true
+  xy: 930, 748
+  size: 78, 88
+  orig: 200, 200
+  offset: 70, 59
+  index: -1
+eye
+  rotate: true
+  xy: 479, 373
+  size: 61, 32
+  orig: 61, 35
+  offset: 0, 3
+  index: -1
+eye2
+  rotate: true
+  xy: 690, 750
+  size: 67, 30
+  orig: 86, 32
+  offset: 8, 2
+  index: -1
+foot_L
+  rotate: true
+  xy: 668, 622
+  size: 83, 42
+  orig: 85, 44
+  offset: 1, 1
+  index: -1
+foot_R
+  rotate: false
+  xy: 631, 430
+  size: 52, 70
+  orig: 54, 75
+  offset: 1, 1
+  index: -1
+hand_R
+  rotate: false
+  xy: 134, 337
+  size: 34, 45
+  orig: 36, 47
+  offset: 1, 1
+  index: -1
+head
+  rotate: false
+  xy: 531, 571
+  size: 135, 134
+  orig: 137, 136
+  offset: 1, 1
+  index: -1
+hear_front
+  rotate: false
+  xy: 172, 144
+  size: 131, 169
+  orig: 133, 171
+  offset: 1, 1
+  index: -1
+hear_kazari
+  rotate: false
+  xy: 2, 590
+  size: 151, 407
+  orig: 153, 409
+  offset: 1, 1
+  index: -1
+leg_L1
+  rotate: true
+  xy: 722, 745
+  size: 101, 206
+  orig: 103, 208
+  offset: 1, 1
+  index: -1
+leg_L2
+  rotate: false
+  xy: 935, 828
+  size: 80, 169
+  orig: 82, 171
+  offset: 1, 1
+  index: -1
+leg_R1
+  rotate: false
+  xy: 134, 384
+  size: 80, 204
+  orig: 82, 206
+  offset: 1, 1
+  index: -1
+leg_R2
+  rotate: false
+  xy: 341, 604
+  size: 53, 191
+  orig: 55, 193
+  offset: 1, 1
+  index: -1
+new/arm_R1
+  rotate: false
+  xy: 419, 208
+  size: 61, 112
+  orig: 63, 114
+  offset: 1, 1
+  index: -1
+new/arm_R2
+  rotate: false
+  xy: 407, 322
+  size: 70, 112
+  orig: 72, 114
+  offset: 1, 1
+  index: -1
+new/hand_L
+  rotate: false
+  xy: 564, 380
+  size: 41, 51
+  orig: 43, 53
+  offset: 1, 1
+  index: -1
+new/hand_R
+  rotate: false
+  xy: 513, 373
+  size: 49, 58
+  orig: 51, 60
+  offset: 1, 1
+  index: -1
+new/head new
+  rotate: true
+  xy: 396, 505
+  size: 122, 133
+  orig: 122, 133
+  offset: 0, 0
+  index: -1
+new/lingdai
+  rotate: true
+  xy: 479, 334
+  size: 37, 60
+  orig: 39, 62
+  offset: 1, 1
+  index: -1
+new/shirt
+  rotate: true
+  xy: 535, 707
+  size: 110, 153
+  orig: 112, 155
+  offset: 1, 1
+  index: -1
+new/shirt new
+  rotate: false
+  xy: 396, 629
+  size: 133, 175
+  orig: 139, 178
+  offset: 4, 0
+  index: -1
+skirt
+  rotate: false
+  xy: 2, 2
+  size: 166, 139
+  orig: 168, 141
+  offset: 1, 1
+  index: -1
+syuriken
+  rotate: true
+  xy: 531, 502
+  size: 67, 134
+  orig: 69, 136
+  offset: 1, 1
+  index: -1

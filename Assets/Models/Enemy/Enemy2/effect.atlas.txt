@@ -1,0 +1,20 @@
+
+effect.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/effect/2
+  rotate: false
+  xy: 189, 28
+  size: 131, 67
+  orig: 200, 200
+  offset: 38, 66
+  index: -1
+images/effect/3
+  rotate: false
+  xy: 2, 2
+  size: 185, 93
+  orig: 200, 200
+  offset: 9, 53
+  index: -1

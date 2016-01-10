@@ -1,0 +1,62 @@
+
+fire_ball.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1/10 (2)
+  rotate: true
+  xy: 92, 10
+  size: 78, 80
+  orig: 80, 82
+  offset: 1, 1
+  index: -1
+1/11
+  rotate: false
+  xy: 100, 171
+  size: 80, 80
+  orig: 82, 82
+  offset: 1, 1
+  index: -1
+1/12
+  rotate: false
+  xy: 100, 90
+  size: 80, 79
+  orig: 82, 81
+  offset: 1, 1
+  index: -1
+1/13
+  rotate: false
+  xy: 2, 155
+  size: 96, 96
+  orig: 98, 98
+  offset: 1, 1
+  index: -1
+1/14
+  rotate: false
+  xy: 2, 60
+  size: 88, 93
+  orig: 90, 95
+  offset: 1, 1
+  index: -1
+1/7 (2)
+  rotate: false
+  xy: 2, 2
+  size: 63, 56
+  orig: 65, 58
+  offset: 1, 1
+  index: -1
+1/8 (2)
+  rotate: true
+  xy: 182, 139
+  size: 56, 51
+  orig: 58, 53
+  offset: 1, 1
+  index: -1
+1/9 (2)
+  rotate: false
+  xy: 182, 197
+  size: 54, 54
+  orig: 56, 56
+  offset: 1, 1
+  index: -1

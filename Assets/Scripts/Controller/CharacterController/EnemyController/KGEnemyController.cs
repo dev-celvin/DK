@@ -1,0 +1,103 @@
+﻿using UnityEngine;
+using System.Collections.Generic;
+
+namespace KGCustom.Controller.CharacterController.EnemyController {
+    public abstract class KGEnemyController : KGCharacterController
+    {
+        //Editor下执行的代码为提供动画位移编辑，可忽略不看
+#if UNITY_EDITOR
+        public int GetBehaviorCount() {
+            return m_behaviors.Count;
+        }
+
+        [HideInInspector]
+        public int AnimIndex
+        {
+            get
+            {
+                return _animIndex;
+            }
+            set
+            {
+                SetAnim(value);
+                _animIndex = value;
+            }
+        }
+        [HideInInspector]
+        public int _animIndex = -1;
+
+        protected virtual void SetAnim(int index)
+        {
+            
+        }
+#endif
+        /////////////////////////////////////////////
+
+        public SkeletonAnimation m_SkeletonAnim;
+        [SerializeField]
+        protected List<CharacterBehavior.BehaviorCurve> m_behaviors;
+
+        public virtual void hitAttackHandle() {
+            
+        }
+
+        protected virtual void ChangeState() {
+            if (character.curState != null) character.curState.end(this);
+            CharacterBehavior cb = GetState(m_SkeletonAnim.AnimationName);
+            character.curState = cb;
+            if (cb != null)
+            {
+                character.curState.begin(this);
+            }
+        }
+
+        /// <summary>
+        /// [必须重写]重写以实现寻找动画名对应的状态，找不到则返回null
+        /// </summary>
+        /// <param name="animName"></param>
+        /// <returns></returns>
+        protected virtual CharacterBehavior GetState(string animName) {
+            return null;
+        }
+
+        //动作集均已DoXxx()形式出现，理论上除DoAttack外均要重写，DoAttack如需特殊处理可重写
+        public virtual void DoDefence() {}
+        public virtual void DoMove() { }
+        public virtual void DoAttack(AttackEffect ae) {
+            m_SkeletonAnim.AnimationName = ae.name;
+            GameObject go = attackEffectPool.Instantiate();
+            go.transform.parent = transform;
+            go.transform.position = transform.position;
+            AttackEffectController aeCtrl = go.GetComponent<AttackEffectUtility>().m_AttackEffectController;
+            aeCtrl.release(this, ae);
+            ChangeState();
+        }
+        public virtual void DoDamage() { }
+        public virtual void DoIdle() { }
+        public virtual void DoDead() { }
+
+        protected virtual void ECUpdate() {
+            if (character.curState != null) character.curState.execute(this);
+        }
+
+        /// <summary>
+        /// [有必要时重写]重写实现每个动画结束时执行的动作
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="trackIndex"></param>
+        /// <param name="loopCount"></param>
+        protected virtual void OnComplete(Spine.AnimationState state, int trackIndex, int loopCount){
+            switch (character.curState.behaviorType)
+            {
+                case CharacterBehavior.BehaviorType.CanThink:
+                    break;
+                default:
+                    if (character.curState != null) character.curState.end(this);
+                    character.curState = null;
+                    break;
+            }
+        }
+    }
+
+}
+

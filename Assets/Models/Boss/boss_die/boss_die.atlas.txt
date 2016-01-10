@@ -1,0 +1,215 @@
+
+boss_die.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1/boss_die_00001
+  rotate: true
+  xy: 800, 2
+  size: 163, 216
+  orig: 300, 300
+  offset: 67, 62
+  index: -1
+1/boss_die_00008
+  rotate: false
+  xy: 816, 448
+  size: 197, 258
+  orig: 300, 300
+  offset: 49, 26
+  index: -1
+1/boss_die_00010
+  rotate: false
+  xy: 816, 708
+  size: 203, 275
+  orig: 300, 300
+  offset: 43, 15
+  index: -1
+1/boss_die_00011
+  rotate: true
+  xy: 519, 103
+  size: 211, 279
+  orig: 300, 300
+  offset: 42, 11
+  index: -1
+1/boss_die_00014
+  rotate: false
+  xy: 810, 167
+  size: 212, 279
+  orig: 300, 300
+  offset: 41, 13
+  index: -1
+1/boss_die_00017
+  rotate: true
+  xy: 532, 759
+  size: 224, 282
+  orig: 300, 300
+  offset: 35, 11
+  index: -1
+1/boss_die_00020
+  rotate: true
+  xy: 224, 94
+  size: 216, 282
+  orig: 300, 300
+  offset: 35, 12
+  index: -1
+1/boss_die_00021
+  rotate: false
+  xy: 2, 404
+  size: 230, 290
+  orig: 300, 300
+  offset: 33, 8
+  index: -1
+1/boss_die_00022
+  rotate: true
+  xy: 532, 535
+  size: 222, 282
+  orig: 300, 300
+  offset: 38, 11
+  index: -1
+1/boss_die_00023
+  rotate: true
+  xy: 234, 312
+  size: 218, 283
+  orig: 300, 300
+  offset: 43, 10
+  index: -1
+1/boss_die_00024
+  rotate: true
+  xy: 241, 532
+  size: 222, 284
+  orig: 300, 300
+  offset: 39, 13
+  index: -1
+1/boss_die_00025
+  rotate: false
+  xy: 2, 115
+  size: 220, 287
+  orig: 300, 300
+  offset: 38, 10
+  index: -1
+1/boss_die_00026
+  rotate: false
+  xy: 2, 696
+  size: 237, 287
+  orig: 300, 300
+  offset: 33, 9
+  index: -1
+1/boss_die_00027
+  rotate: true
+  xy: 241, 756
+  size: 227, 289
+  orig: 300, 300
+  offset: 31, 8
+  index: -1
+1/boss_die_00028
+  rotate: true
+  xy: 527, 316
+  size: 217, 281
+  orig: 300, 300
+  offset: 39, 13
+  index: -1
+
+boss_die2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1/boss_die_00000
+  rotate: false
+  xy: 247, 41
+  size: 162, 169
+  orig: 300, 300
+  offset: 72, 115
+  index: -1
+1/boss_die_00002
+  rotate: false
+  xy: 215, 212
+  size: 165, 239
+  orig: 300, 300
+  offset: 64, 37
+  index: -1
+1/boss_die_00003
+  rotate: false
+  xy: 847, 771
+  size: 173, 242
+  orig: 300, 300
+  offset: 69, 37
+  index: -1
+1/boss_die_00004
+  rotate: true
+  xy: 2, 2
+  size: 169, 243
+  orig: 300, 300
+  offset: 70, 39
+  index: -1
+1/boss_die_00005
+  rotate: false
+  xy: 430, 473
+  size: 185, 259
+  orig: 300, 300
+  offset: 58, 26
+  index: -1
+1/boss_die_00006
+  rotate: false
+  xy: 807, 498
+  size: 180, 247
+  orig: 300, 300
+  offset: 56, 26
+  index: -1
+1/boss_die_00007
+  rotate: false
+  xy: 617, 477
+  size: 188, 256
+  orig: 300, 300
+  offset: 51, 29
+  index: -1
+1/boss_die_00009
+  rotate: false
+  xy: 648, 747
+  size: 197, 266
+  orig: 300, 300
+  offset: 56, 19
+  index: -1
+1/boss_die_00012
+  rotate: false
+  xy: 2, 453
+  size: 213, 279
+  orig: 300, 300
+  offset: 43, 13
+  index: -1
+1/boss_die_00013
+  rotate: false
+  xy: 217, 456
+  size: 211, 276
+  orig: 300, 300
+  offset: 46, 13
+  index: -1
+1/boss_die_00015
+  rotate: false
+  xy: 2, 734
+  size: 220, 279
+  orig: 300, 300
+  offset: 37, 13
+  index: -1
+1/boss_die_00016
+  rotate: false
+  xy: 438, 735
+  size: 208, 278
+  orig: 300, 300
+  offset: 42, 13
+  index: -1
+1/boss_die_00018
+  rotate: false
+  xy: 2, 173
+  size: 211, 278
+  orig: 300, 300
+  offset: 42, 13
+  index: -1
+1/boss_die_00019
+  rotate: false
+  xy: 224, 734
+  size: 212, 279
+  orig: 300, 300
+  offset: 45, 13
+  index: -1
