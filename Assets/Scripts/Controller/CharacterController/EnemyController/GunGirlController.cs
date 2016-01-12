@@ -26,7 +26,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         {
             { "atk_1" ,new ATK_1() },
             { "atk_2", new ATK_2() },
-            { "atk_3", new ATK_2() },
+            { "atk_3", new ATK_3() },
             { "move",  new Move() },
             { "damage_1", new Damage_1()},
             { "idle", new Idle()},
@@ -112,11 +112,11 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         }
         public override void DoDead()
         {
-            if (character.curState == animToState["die"])
+            if (character.curState == animToState["dead"])
             {
                 return;
             }
-            m_SkeletonAnim.AnimationName = "die";
+            m_SkeletonAnim.AnimationName = "dead";
             m_SkeletonAnim.state.GetCurrent(0).loop = false;
             ChangeState();
         }

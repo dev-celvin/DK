@@ -26,7 +26,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             { "atk_1" ,new ATK_1() },
             { "atk_2", new ATK_2() },
             { "move",  new Move() },
-            { "def_damage", new Defence()},
+            { "defence", new Defence()},
             { "idle", new Idle()},
             { "dead", new Dead()},
         };
@@ -62,7 +62,6 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         protected override void init()
         {
             character = new PikeMan();
-            m_SkeletonAnim.state.Complete += OnComplete;
             for (int i = 0; i < m_behaviors.Count; i++) {
                 if (animToState.ContainsKey(m_behaviors[i].animName))
                     animToState[m_behaviors[i].animName].animCurve = m_behaviors[i].curve;
@@ -74,8 +73,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             }
             character.xDirection = Global.GlobalValue.XDIRECTION_RIGHT;
             transform.localScale = Vector3.right * transform.localScale.x * -character.xDirection + Vector3.one - Vector3.right;
-            character.curState = null;
-            attackEffectPool = EffectPoolManager.GetAttackEffectPoolByType(character.characterType);
+            base.init();
         }
 
         public override void DoDamage()
@@ -153,12 +151,12 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             if (hitAttacks.Count != 0) {
                 DoDefence();
             }
-            if (character.curState == animToState["def_damage"])
+            if (character.curState == animToState["defence"])
             {
-                m_SkeletonAnim.state.SetAnimation(0, "def_damage", false);
+                m_SkeletonAnim.state.SetAnimation(0, "defence", false);
                 return;
             }
-            m_SkeletonAnim.AnimationName = "def_damage";
+            m_SkeletonAnim.AnimationName = "defence";
             m_SkeletonAnim.state.GetCurrent(0).loop = false;
             ChangeState();
         }

@@ -97,6 +97,13 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
                     break;
             }
         }
+
+        protected override void init()
+        {
+            m_SkeletonAnim.state.Complete += OnComplete;
+            character.curState = null;
+            attackEffectPool = EffectPoolManager.GetAttackEffectPoolByType(character.characterType);
+        }
     }
 
 }
