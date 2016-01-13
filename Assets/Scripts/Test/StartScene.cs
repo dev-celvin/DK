@@ -42,7 +42,6 @@ public class StartScene : MonoBehaviour
         }
 
         uint toProcess;
-        Debug.Log(async.progress * 100);
         if (async.progress < 0.9f)//坑爹的progress，最多到0.9f
         {
             toProcess = (uint)(async.progress * 100);
