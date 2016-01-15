@@ -73,7 +73,7 @@ public class PlayerBehavior<T> : CharacterBehavior where T : PlayerBehavior<T>, 
     protected void normalCombo(PlayerController pc)
     {
 #if UNITY_STANDALONE_WIN
-        if (Input.GetKeyUp(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             pc.m_animator.SetInteger("SkillAction", 0);
             pc.m_animator.SetInteger("AttackAction", PlayerAttack.instance.normalAction[PlayerAttack.instance.normalIndex]);
@@ -81,7 +81,7 @@ public class PlayerBehavior<T> : CharacterBehavior where T : PlayerBehavior<T>, 
             PlayerAttack.instance.combo = true;
         }
 #else
-		if (KeyManager.instance.GetKeyMessageUp(KeyManager.KeyCode.Attack))
+		if (KeyManager.instance.GetKeyMessageDown(KeyManager.KeyCode.Attack))
            {
                 pc.m_animator.SetInteger("SkillAction", 0);
                 pc.m_animator.SetInteger("AttackAction", PlayerAttack.instance.normalAction[PlayerAttack.instance.normalIndex]);
@@ -148,14 +148,14 @@ public class PlayerBehavior<T> : CharacterBehavior where T : PlayerBehavior<T>, 
                     }
 #endif
 #if UNITY_STANDALONE_WIN
-        else if (Input.GetKeyUp(KeyCode.K))
+        else if (Input.GetKeyDown(KeyCode.K))
         {
             PlayerAttack.instance.normalIndex = 0;
             pc.m_animator.SetInteger("AttackAction", PlayerAttack.instance.normalAction[PlayerAttack.instance.normalIndex]);
             PlayerAttack.instance.normalIndex = (PlayerAttack.instance.normalIndex + 1) % PlayerAttack.instance.normalAction.Count;
         }
 #else
-					else if (KeyManager.instance.GetKeyMessageUp(KeyManager.KeyCode.Attack))
+					else if (KeyManager.instance.GetKeyMessageDown(KeyManager.KeyCode.Attack))
                     {
                         PlayerAttack.instance.normalIndex = 0;
             pc.m_animator.SetInteger("AttackAction", PlayerAttack.instance.normalAction[PlayerAttack.instance.normalIndex]);

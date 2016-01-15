@@ -8,5 +8,8 @@ namespace KGCustom.Model.Character
         PikeMan,
         GunGirl,
         Player,
+        SpiderQueen,
+        Zako,
+        ZakoFar
     }
 }

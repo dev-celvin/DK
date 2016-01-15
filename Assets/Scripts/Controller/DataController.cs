@@ -65,8 +65,8 @@ namespace KGCustom.Controller {
         // Update is called once per frame
         void Update()
         {
-            PlayerAttack.instance.setSkillQueue(skillQueue);
-            PlayerAttack.instance.setNormalQueue(normalQueue);
+            //PlayerAttack.instance.setSkillQueue(skillQueue);
+            //PlayerAttack.instance.setNormalQueue(normalQueue);
             //实时更新用
             JumpUp.instance.yTransfer = JumpPower;
             Run.instance.xTransfer = RunSpeed;

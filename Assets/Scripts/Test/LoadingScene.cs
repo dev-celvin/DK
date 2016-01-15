@@ -43,10 +43,8 @@ public class LoadingScene : MonoBehaviour {
     public IEnumerator LoadScene(string SceneName)
     {
         _mCameraGameObject.SetActive(true);
-        yield return new WaitForSeconds(3);
         async = Application.LoadLevelAsync(SceneName);
         async.allowSceneActivation = false;
         yield return async;
-        Debug.Log("Loading complete");
     }
 }

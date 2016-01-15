@@ -19,8 +19,9 @@ namespace BehaviorDesigner.Runtime.Tasks.Enemy
         public override TaskStatus OnUpdate()
         {
             AttackEffect ae = ec.character.m_skills.GetRandomAttack(Mathf.Abs(transform.position.x - targetTransform.position.x));
-            if (ae != null) {
+            if (ae != null && ae.IsAvailable()) {
                 ec.DoAttack(ae);
+                ae.CDReset();
                 return TaskStatus.Success;
             }
             return TaskStatus.Failure;

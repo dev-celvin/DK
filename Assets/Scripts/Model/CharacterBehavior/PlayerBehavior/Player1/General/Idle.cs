@@ -11,25 +11,25 @@ namespace KGCustom.Model {
             if(damageCount(pc))return;
             moveableExecute(pc);
             nextToAttackExecute(pc);
-#if UNITY_STANDALONE_WIN
-            if (Input.GetKey(KeyCode.K))
-            {
-                defCountDown++;
-                if (defCountDown >= 8.0f)
-                {
-                    pc.m_animator.SetBool("IsDefense", true);
-                }
-            }
-#else
-				if (KeyManager.instance.GetKeyMessage(KeyManager.KeyCode.Attack))
-                {
-                    defCountDown++;
-            if (defCountDown >= 8.0f)
-            {
-                pc.m_animator.SetBool("IsDefense", true);
-            }
-                }
-#endif
+//#if UNITY_STANDALONE_WIN
+//            if (Input.GetKey(KeyCode.K))
+//            {
+//                defCountDown++;
+//                if (defCountDown >= 8.0f)
+//                {
+//                    pc.m_animator.SetBool("IsDefense", true);
+//                }
+//            }
+//#else
+//                if (KeyManager.instance.GetKeyMessage(KeyManager.KeyCode.Attack))
+//                {
+//                    defCountDown++;
+//                    if (defCountDown >= 8.0f)
+//                    {
+//                        pc.m_animator.SetBool("IsDefense", true);
+//                    }
+//                }
+//#endif
         }
 
         public override void begin(KGCharacterController cc)

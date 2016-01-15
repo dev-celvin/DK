@@ -75,6 +75,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
         public virtual void DoDamage() { }
         public virtual void DoIdle() { }
         public virtual void DoDead() { }
+        public virtual void DoStart() { }
 
         protected virtual void ECUpdate() {
             if (character.curState != null) character.curState.execute(this);

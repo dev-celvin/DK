@@ -137,6 +137,6 @@ public class UISkillChange : MonoBehaviour {
             }
         }
 
-        //KGCustom.Model.PlayerAttack.instance.setSkillQueue(setSkill);
+        KGCustom.Model.PlayerAttack.instance.setSkillQueue(setSkill);
     }
 }
