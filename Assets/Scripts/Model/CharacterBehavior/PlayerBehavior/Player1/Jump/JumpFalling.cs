@@ -9,6 +9,7 @@ namespace KGCustom.Model {
         {
             xTransfer = 1;
             yTransfer = 30;
+            
         }
 
         public override void execute(KGCharacterController cc)

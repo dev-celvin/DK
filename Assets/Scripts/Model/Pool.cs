@@ -17,6 +17,15 @@ namespace KGCustom.Model
                         case CharacterType.GunGirl:
                             m_pref = (GameObject)Resources.Load("Prefab/AttackEffect/gungirl_effect");
                             break;
+                        case CharacterType.SpiderQueen:
+                            m_pref = (GameObject)Resources.Load("Prefab/AttackEffect/SpiderQueen_effect");
+                            break;
+                        case CharacterType.Zako:
+                            m_pref = (GameObject)Resources.Load("Prefab/AttackEffect/Zako_effect");
+                            break;
+                        case CharacterType.ZakoFar:
+                            m_pref = (GameObject)Resources.Load("Prefab/AttackEffect/syuriken");
+                            break;
                     }
                     break;
                 case PoolType.HitEffectPool:

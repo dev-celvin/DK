@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using AnimationState = Spine.AnimationState;
+
 public class StartScene : MonoBehaviour
 {
     public GameObject TouchUI;
@@ -69,19 +71,20 @@ public class StartScene : MonoBehaviour
         Destroy(TouchUI);
         Camera.main.backgroundColor = Color.white;
         skeletonAnimation.state.SetAnimation(0, "2", false);
-        skeletonAnimation.state.AddAnimation(0, "3", true, 2.333f);
+        skeletonAnimation.state.AddAnimation(0, "3", true, 2.333f).Complete +=
+            delegate(AnimationState state, int index, int count)
+            {
+                StartCoroutine(LoadScene());                
+            };
         tweenOrthoSize.enabled = true;
         tweenPosition.enabled = true;
-        StartCoroutine(LoadScene());
     }
     IEnumerator LoadScene()
     {
-        yield return new WaitForSeconds(2);
         processBar.gameObject.SetActive(true);
         async = Application.LoadLevelAsync("Main");
         async.allowSceneActivation = false;
         yield return async;
-        Debug.Log("Loading complete");
     }
 
 }

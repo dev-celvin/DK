@@ -29,6 +29,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             { "defence", new Defence()},
             { "idle", new Idle()},
             { "dead", new Dead()},
+            { "damage", new Damage()},
         };
 
         void Start() {
@@ -93,12 +94,12 @@ namespace KGCustom.Controller.CharacterController.EnemyController
                 DoDead();
                 return;
             }
-            if (character.curState == animToState["def_damage"])
+            if (character.curState == animToState["damage"])
             {
-                m_SkeletonAnim.state.SetAnimation(0, "def_damage", false);
+                m_SkeletonAnim.state.SetAnimation(0, "damage", false);
                 return;
             }
-            m_SkeletonAnim.AnimationName = "def_damage";
+            m_SkeletonAnim.AnimationName = "damage";
             m_SkeletonAnim.state.GetCurrent(0).loop = false;
             ChangeState();
             base.DoDefence();

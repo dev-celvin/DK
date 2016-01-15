@@ -32,18 +32,12 @@ namespace KGCustom.Model.Behavior.EnemyBehavior.GunGirlBehavior {
             behaviorType = BehaviorType.CanThink;
             xTransfer = 3;
         }
-
     }
 
     public class Damage_1 : EnemyBehavior
     {
         public Damage_1() {
             behaviorType = BehaviorType.CanNotThink;
-        }
-
-        public override void execute(KGCharacterController cc)
-        {
-            DefencableExecute(cc);
         }
     }
 
@@ -58,6 +52,20 @@ namespace KGCustom.Model.Behavior.EnemyBehavior.GunGirlBehavior {
     public class Dead : EnemyBehavior {
         public Dead() {
             behaviorType = BehaviorType.CanNotThink;
+        }
+        public override void begin(KGCharacterController cc)
+        {
+            base.begin(cc);
+            KGEnemyController ec = (KGEnemyController)cc;
+            ec.transform.parent.Find("Collider/HitCollider/body").GetComponent<CircleCollider2D>().enabled = false;
+        }
+
+        public override void end(KGCharacterController cc)
+        {
+            base.end(cc);
+            KGEnemyController ec = (KGEnemyController)cc;
+            ec.transform.parent.Find("Collider/General/base").GetComponent<CircleCollider2D>().enabled = false;
+            GameObject.Destroy(ec.transform.parent.gameObject);
         }
     }
 }

@@ -5,7 +5,7 @@ public class MainScenePlayerCtrl : MonoBehaviour
 {
 
     private Animator _mAnimator;
-    public float Speed = 2.0f;
+    public float Speed = 3.0f;
 	// Use this for initialization
 	void Start ()
 	{

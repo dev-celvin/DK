@@ -32,6 +32,7 @@ namespace KGCustom.Controller {
         {
             Destroy(m_Transform.gameObject);
         }
+        
 
     }
 

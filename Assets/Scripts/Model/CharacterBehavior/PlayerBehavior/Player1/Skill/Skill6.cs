@@ -20,5 +20,6 @@ public class Skill6 : PlayerBehavior<Skill6>
     public override void end(KGCharacterController cc)
     {
         attackEnd(cc);
+        CameraController.Instance.SetCameraEffect(CameraMode.Focus, false, -1f, -1f, -1f, null);
     }
 }

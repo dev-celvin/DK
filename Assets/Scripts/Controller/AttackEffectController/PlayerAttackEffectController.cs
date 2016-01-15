@@ -19,18 +19,20 @@ namespace KGCustom.Controller {
             if (!playCheck && Player.instance.curState is Damage)
             {
                 playCheck = true;
-                switch (m_SkeletonAnimation.AnimationName)
-                {
-                    //case "skill_2":
-                    //    if (m_SkeletonAnimation.state.GetCurrent(0).time < 0.25f) GameObject.Destroy(gameObject);
-                    //    break;
-                    //case "skill_5":
-                    //    if (m_SkeletonAnimation.state.GetCurrent(0).time < 0.8f) GameObject.Destroy(gameObject);
-                    //    break;
-                    default:
-                        GameObject.Destroy(gameObject);
-                        break;
-                }
+                GameObject.Destroy(gameObject);
+
+                //switch (m_SkeletonAnimation.AnimationName)
+                //{
+                //    case "skill_2":
+                //        if (m_SkeletonAnimation.state.GetCurrent(0).time < 0.25f) GameObject.Destroy(gameObject);
+                //        break;
+                //    case "skill_5":
+                //        if (m_SkeletonAnimation.state.GetCurrent(0).time < 0.8f) GameObject.Destroy(gameObject);
+                //        break;
+                //    default:
+                //        GameObject.Destroy(gameObject);
+                //        break;
+                //}
             }
         }
 

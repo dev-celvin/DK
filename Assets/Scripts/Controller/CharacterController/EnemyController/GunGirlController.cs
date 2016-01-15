@@ -30,7 +30,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             { "move",  new Move() },
             { "damage_1", new Damage_1()},
             { "idle", new Idle()},
-            { "die", new Dead()},
+            { "dead", new Dead()},
         };
 
         void Start()
@@ -108,7 +108,6 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             m_SkeletonAnim.AnimationName = "damage_1";
             m_SkeletonAnim.state.GetCurrent(0).loop = false;
             ChangeState();
-            base.DoDefence();
         }
         public override void DoDead()
         {

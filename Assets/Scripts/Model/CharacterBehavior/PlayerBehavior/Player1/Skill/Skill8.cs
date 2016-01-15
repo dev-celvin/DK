@@ -19,5 +19,6 @@ public class Skill8 : PlayerBehavior<Skill8>
     public override void end(KGCharacterController cc)
     {
         attackEnd(cc);
+        CameraController.Instance.SetCameraEffect(CameraMode.Focus, false, -1f, -1f, -1f, null);
     }
 }
