@@ -6,7 +6,8 @@ namespace KGCustom.Model.Behavior.EnemyBehavior
 {
     public class EnemyBehavior : CharacterBehavior
     {
-
+        protected bool startFall = false;
+        protected float startFallTime = -1;
         public override void execute(KGCharacterController cc)
         {
             if (cc.hitAttacks.Count != 0) ((KGEnemyController)cc).DoDamage();

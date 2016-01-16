@@ -11,10 +11,10 @@ namespace KGCustom.Controller {
         public GameObject AttackEffect;        //主角的攻击和技能特效
         public Transform checkGround;
         public Transform rootPos;
+        public Transform headPos;
         public Animator m_animator;            //动画机
         public SkeletonGhost skeletonGhost;            //Ghosting
         public AudioSource audioSource;                //音源
-        public Rigidbody2D rigid2D;                    //刚体
         public string curState;
         public float curMoveRate { get; set; }
         public sbyte moveToRun { get; set; }//0代表常规状态，即无需动画过渡，1为走过渡到跑，-1为跑过渡到走
