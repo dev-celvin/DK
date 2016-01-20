@@ -11,7 +11,8 @@ namespace KGCustom.Model {
         public override void begin(KGCharacterController cc)
         {
             PlayerController pc = (PlayerController)cc;
-            GameObject atkEffect = (GameObject)GameObject.Instantiate(pc.AttackEffect, pc.transform.position, pc.AttackEffect.transform.rotation);
+            GameObject atkEffect = pc.attackEffectPool.Instantiate();
+            atkEffect.transform.position = pc.transform.position;
             atkEffect.GetComponent<AttackEffectUtility>().m_AttackEffectController.release(pc, pc.character.m_skills.getBySkillName("run_atk"));
             atkEffect.transform.parent = pc.transform;
             pc.skeletonGhost.ghostingEnabled = true;

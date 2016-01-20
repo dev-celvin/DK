@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using KGCustom.Model.Behavior.EnemyBehavior.SpiderQueenBehavior;
 using UnityEngine;
+using KGCustom.Model.Behavior.EnemyBehavior;
 
 namespace KGCustom.Controller.CharacterController.EnemyController
 {
@@ -16,9 +17,9 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             {
                 if (ae.name == animName)
                 {
-                    ae.pRange = 10000;
+                    ae.hRange = 10000;
                 }
-                else ae.pRange = 0;
+                else ae.hRange = 0;
             }
         }
 #endif
@@ -26,16 +27,14 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         {
 
             { "atk_1" ,new ATK_1()},
-            { "atk_2" ,new ATK_2()},
-            { "atk_3" ,new ATK_3()},
-            { "atk_4" ,new ATK_4()},
-            { "damage" ,new Damage()},
-            { "damage2" ,new Damage2()},
-            { "dead" ,new Dead()},
-            { "defence" ,new Defence()},
-            { "idle" ,new Idle()},
-            { "move" ,new Move()},
-            { "start" ,new Start()},
+            { "atk_2" ,new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink)},
+            { "atk_3" ,new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink)},
+            { "atk_4" ,new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink)},
+            { "dead" ,new GeneralDead()},
+            { "defence" ,new GeneralDefence()},
+            { "idle" ,new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink)},
+            { "move" ,new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink, 1)},
+            { "start" ,new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink)},
         };
 
         void Start()
@@ -71,6 +70,11 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         protected override void init()
         {
             character = new SpiderQueen();
+            genDamge = new Model.Behavior.EnemyBehavior.GeneralDamage();
+            //受伤动画如果没有不同的位移的话，就用同一个
+            animToState["damage"] = genDamge;
+            animToState["damage2"] = genDamge;
+
             for (int i = 0; i < m_behaviors.Count; i++)
             {
                 if (animToState.ContainsKey(m_behaviors[i].animName))
@@ -96,11 +100,10 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         public override void DoDamage()
         {
             Model.Attack atk = hitAttacks.Pop();
-            character.hp -= atk.m_AttackEffect.getDamageValue();
-
-            character.xDirection = -atk.direction;
-            transform.localScale = new Vector3(-character.xDirection, 1, 1);
-            GameObject hiteffect = (GameObject)Instantiate(HitEffect, atk.hitPos, HitEffect.transform.rotation);
+            character.hp -= atk.atkEffect.getDamageValue();
+            ChangeDirection(-atk.direction);
+            GameObject hiteffect = PoolManager.instance.GetHitEffectPool().Instantiate();
+            hiteffect.transform.position = atk.hitPos;
             hiteffect.GetComponent<HitEffect>().PlayHitEffect(3);
             if (hitAttacks.Count != 0)
             {
@@ -172,9 +175,9 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         public override void DoDefence()
         {
             Model.Attack atk = hitAttacks.Pop();
-            character.xDirection = -atk.direction;
-            transform.localScale = new Vector3(-character.xDirection, 1, 1);
-            GameObject hiteffect = (GameObject)Instantiate(HitEffect, atk.hitPos, HitEffect.transform.rotation);
+            ChangeDirection(-atk.direction);
+            GameObject hiteffect = PoolManager.instance.GetHitEffectPool().Instantiate();
+            hiteffect.transform.position = atk.hitPos;
             hiteffect.GetComponent<HitEffect>().PlayHitEffect(3);
             if (hitAttacks.Count != 0)
             {

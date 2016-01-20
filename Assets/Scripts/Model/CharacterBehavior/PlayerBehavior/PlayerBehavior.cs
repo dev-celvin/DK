@@ -10,8 +10,11 @@ public class PlayerBehavior<T> : CharacterBehavior where T : PlayerBehavior<T>, 
         startTime = Time.time;
         if (startTime == PlayerAttack.instance.chagneComboTime) pc.m_animator.SetBool("IsOver", true);
         else PlayerAttack.instance.chagneComboTime = -1;
-        GameObject atkEffect = (GameObject)GameObject.Instantiate(pc.AttackEffect, pc.transform.position, pc.AttackEffect.transform.rotation);
-        atkEffect.GetComponent<AttackEffectUtility>().m_AttackEffectController.release(pc, pc.character.m_skills.getBySkillName(pc.curState));
+        GameObject atkEffect = pc.attackEffectPool.Instantiate();
+        atkEffect.transform.position = pc.transform.position;
+        AttackEffectController aeCtrl = atkEffect.GetComponent<AttackEffectUtility>().m_AttackEffectController;
+        aeCtrl.release(pc, pc.character.m_skills.getBySkillName(pc.curState));
+        pc.TryPushAtkEffect(aeCtrl);
         if (Player.instance.curState is Skill7)atkEffect.transform.parent = pc.transform.parent;
         else atkEffect.transform.parent = pc.transform;
         pc.m_animator.SetInteger("AttackAction", 0);
@@ -191,7 +194,6 @@ public class PlayerBehavior<T> : CharacterBehavior where T : PlayerBehavior<T>, 
     {
         if (animCurve != null) pc.transform.Translate(Time.deltaTime * (Player.instance.xDirection * animCurve.Evaluate(Time.time - startTime) * xTransfer * Vector2.right));
         else pc.transform.Translate(Time.deltaTime * (Player.instance.xDirection * xTransfer * Vector2.right));
-        //pc.transform.parent.position -= pc.transform.parent.position.y * Vector3.up;
     }
 
     public override void begin(KGCharacterController pc)
@@ -298,7 +300,7 @@ public class PlayerBehavior<T> : CharacterBehavior where T : PlayerBehavior<T>, 
     protected bool damageCount(PlayerController pc) {
         if (pc.hitAttacks.Count != 0) {
             Attack atk = pc.hitAttacks.Pop();
-            Player.instance.hp -= atk.m_AttackEffect.getDamageValue();
+            Player.instance.hp -= atk.atkEffect.getDamageValue();
             pc.setDamage(atk.direction, atk.hitPos);
             if (Player.instance.hp <= 0) pc.m_animator.SetBool("Dead", true);
             //当前设定为一次只能被一种攻击攻击到，所以这里把栈清空

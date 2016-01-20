@@ -8,13 +8,12 @@ namespace KGCustom.Controller {
     {
         public static PlayerController instance;
 
-        public GameObject AttackEffect;        //主角的攻击和技能特效
         public Transform checkGround;
         public Transform rootPos;
+        public Transform headPos;
         public Animator m_animator;            //动画机
         public SkeletonGhost skeletonGhost;            //Ghosting
         public AudioSource audioSource;                //音源
-        public Rigidbody2D rigid2D;                    //刚体
         public string curState;
         public float curMoveRate { get; set; }
         public sbyte moveToRun { get; set; }//0代表常规状态，即无需动画过渡，1为走过渡到跑，-1为跑过渡到走
@@ -33,6 +32,7 @@ namespace KGCustom.Controller {
 
         void Start() {
             character = Player.instance;
+            attackEffectPool = PoolManager.instance.GetPoolByType(character.characterType);
             StartCoroutine("CheckGround");
         }
 
@@ -243,14 +243,16 @@ namespace KGCustom.Controller {
             transform.localScale = new Vector3(-direction, 1, 1);
             Player.instance.xDirection = (int)-direction;
             m_animator.SetBool("Damage", true);
-            GameObject go = (GameObject)Instantiate(HitEffect, pos, HitEffect.transform.rotation);
+            GameObject go = PoolManager.instance.GetHitEffectPool().Instantiate();
+            go.transform.position = pos;
             go.GetComponent<HitEffect>().PlayHitEffect(2);
         }
         //设置防御成功
         public void setDefenceSuccess(Vector3 pos)
         {
             m_animator.SetTrigger("DefenseSuccess");
-            GameObject go = (GameObject)Instantiate(HitEffect, pos, HitEffect.transform.rotation);
+            GameObject go = PoolManager.instance.GetHitEffectPool().Instantiate();
+            go.transform.position = pos;
             go.GetComponent<HitEffect>().PlayHitEffect(1);
         }
         //设置反打成功
@@ -259,8 +261,9 @@ namespace KGCustom.Controller {
             transform.position = new Vector3(positionX, transform.position.y);
             transform.localScale = new Vector3(-direction, 1, 1);
             Player.instance.xDirection = (int)-direction;
-            GameObject atkEffect = (GameObject)Instantiate(AttackEffect, transform.position, AttackEffect.transform.rotation);
-            atkEffect.GetComponent<PlayerAttackEffectController>().release(this, character.m_skills.getBySkillName("fan"));
+            GameObject atkEffect = attackEffectPool.Instantiate();
+            atkEffect.transform.position = transform.position;
+            atkEffect.GetComponent<AttackEffectController>().release(this, character.m_skills.getBySkillName("fan"));
             atkEffect.transform.parent = transform;
             m_animator.SetTrigger("FanSuccess");
         }

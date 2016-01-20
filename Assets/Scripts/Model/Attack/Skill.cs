@@ -20,7 +20,7 @@ namespace KGCustom.Model {
         public AttackEffect GetRandomAttack(float dis) {
             List<AttackEffect> aes = null;
             for (int i = 0; i < skillList.Count; i++) {
-                if (skillList[i].pRange >= dis && skillList[i].IsAvailable()) {
+                if (skillList[i].hRange >= dis && skillList[i].IsAvailable()) {
                     if (aes == null) aes = new List<AttackEffect>();
                     aes.Add(skillList[i]);
                 } 
@@ -30,7 +30,7 @@ namespace KGCustom.Model {
                 return null;
             }
             else if(aes.Count == 0)return null;
-            return aes[Random.Range(0, aes.Count)];
+            return aes[Random.Range(0, aes.Count - 1)];
 
         }
 

@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class HitEffect : MonoBehaviour {
 
     public SkeletonAnimation m_SkeletonAnimation;
     public MeshRenderer m_MeshRenderer;
 
-    void Update()
+    void Awake() {
+        m_SkeletonAnimation.state.Complete += OnComplete;
+    }
+
+    void Start() {
+        m_MeshRenderer.enabled = true;
+    }
+
+    private void OnComplete(Spine.AnimationState state, int trackIndex, int loopCount)
     {
-        if (m_SkeletonAnimation.AnimationName != null)
-        {
-            m_MeshRenderer.enabled = true;
-            if (m_SkeletonAnimation.state.GetCurrent(0).time >= m_SkeletonAnimation.state.GetCurrent(0).endTime)
-            {
-                GameObject.Destroy(gameObject);
-            }
-        }
+        m_SkeletonAnimation.AnimationName = null;
+        PoolManager.instance.GetHitEffectPool().Push(gameObject);
     }
 
     public void PlayHitEffect(int type)
@@ -41,4 +42,5 @@ public class HitEffect : MonoBehaviour {
         }
         m_SkeletonAnimation.AnimationName = animName;
     }
+
 }

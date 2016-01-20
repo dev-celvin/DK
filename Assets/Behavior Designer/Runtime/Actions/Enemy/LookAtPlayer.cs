@@ -18,13 +18,12 @@ namespace BehaviorDesigner.Runtime.Tasks.Enemy
         {
             if (ec.transform.position.x > PlayerController.instance.transform.position.x)
             {
-                ec.character.xDirection = Global.GlobalValue.XDIRECTION_LEFT;
+                ec.ChangeDirection(Global.GlobalValue.XDIRECTION_LEFT);
             }
             else if (ec.transform.position.x < PlayerController.instance.transform.position.x)
             {
-                ec.character.xDirection = Global.GlobalValue.XDIRECTION_RIGHT;
+                ec.ChangeDirection(Global.GlobalValue.XDIRECTION_RIGHT);
             }
-            ec.transform.localScale = Vector3.right * -ec.character.xDirection + Vector3.one - Vector3.right;
             return TaskStatus.Success;
         }
 

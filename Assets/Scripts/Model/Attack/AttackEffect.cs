@@ -6,16 +6,14 @@ public class AttackEffect
     public string name { set; get; }
     public float damageValue { set; get; }
     public float damageRange { get; set; }
-    public float nRange { set; get; }//反方向攻击范围
-    public float pRange { get; set; }//正方向攻击范围
+    public float vRange { set; get; }//垂直方向攻击范围
+    public float hRange { get; set; }//水平方向攻击范围
     public float timeScale { get; set; }
     public float costMP { get; set; }
-    public float lastUsedTime { get; set; }
+    public float lastUsedTime = -100;
     public float cd { get; set; }
-    
-    
-
-    public AttackEffect(string name, float damageValue, float damageRange, float nRange, float pRange, float costMP = 10, float cd = 1.0f,  float timeScale = 1.0f )
+    public float stoppableTime;
+    public AttackEffect(string name, float damageValue, float damageRange, float vRange, float hRange, float costMP, float cd,  float timeScale = 1.0f, float stoppableTime = 1000)
     {
         this.name = name;
         this.damageValue = damageValue;
@@ -23,8 +21,9 @@ public class AttackEffect
         this.timeScale = timeScale;
         this.costMP = costMP;
         this.cd = cd;
-        this.nRange = nRange;
-        this.pRange = pRange;
+        this.vRange = vRange;
+        this.hRange = hRange;
+        this.stoppableTime = stoppableTime;
     }
 
     public float getDamageValue()
@@ -34,11 +33,11 @@ public class AttackEffect
 
     public float getSkillReadyTime()
     {
-        return (Time.time - lastUsedTime < cd && lastUsedTime != 0) ? (cd + lastUsedTime - Time.time) : 0;
+        return (Time.time - lastUsedTime < cd) ? (cd + lastUsedTime - Time.time) : 0;
     }
 
     public bool IsAvailable() {
-        if(Time.time - lastUsedTime < cd && lastUsedTime != 0)
+        if(Time.time - lastUsedTime < cd)
         return false;
         return true;
     }

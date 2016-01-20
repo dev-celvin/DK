@@ -11,6 +11,9 @@ namespace KGCustom.Model
                 case PoolType.AttackEffectPool:
                     switch (ctype)
                     {
+                        case CharacterType.Player_1:
+                            m_pref = (GameObject)Resources.Load("Prefab/AttackEffect/p1_effect");
+                            break;
                         case CharacterType.PikeMan:
                             m_pref = (GameObject)Resources.Load("Prefab/AttackEffect/pike_effect");
                             break;
@@ -29,16 +32,23 @@ namespace KGCustom.Model
                     }
                     break;
                 case PoolType.HitEffectPool:
+                    m_pref = (GameObject)Resources.Load("Prefab/HitEffect/public_hit_effect");
                     break;
             }
+        }
 
-            
+        public Pool(AttackObjectType aoType) {
+            switch (aoType) {
+                case AttackObjectType.Dart:
+                    m_pref = (GameObject)Resources.Load("Prefab/AttackObject/syuriken");
+                    break;
+            }
         }
 
         private LinkedList<GameObject> pool = new LinkedList<GameObject>();
         private GameObject m_pref;
         public GameObject Instantiate() {
-            GameObject go = null;
+            GameObject go;
             if (pool.Count == 0)
             {
                 go = (GameObject)GameObject.Instantiate(m_pref, new Vector2(1000, 1000), m_pref.transform.rotation);
@@ -55,8 +65,9 @@ namespace KGCustom.Model
         public void Push(GameObject go) {
             go.transform.position = Vector2.one * 1000;
             go.transform.rotation = Quaternion.identity;
-            go.SetActive(false);
+            go.transform.parent = PoolManager.instance.transform;
             pool.AddLast(go);
+            go.SetActive(false);
         }
 
         public enum PoolType {

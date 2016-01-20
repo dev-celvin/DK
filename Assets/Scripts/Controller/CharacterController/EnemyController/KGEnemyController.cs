@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using KGCustom.Model.Behavior.EnemyBehavior;
 
 namespace KGCustom.Controller.CharacterController.EnemyController {
     public abstract class KGEnemyController : KGCharacterController
@@ -23,8 +24,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
                 _animIndex = value;
             }
         }
-        [HideInInspector]
-        public int _animIndex = -1;
+        protected int _animIndex = -1;
 
         protected virtual void SetAnim(int index)
         {
@@ -34,6 +34,8 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
         /////////////////////////////////////////////
 
         public SkeletonAnimation m_SkeletonAnim;
+        protected GeneralDamage genDamge;
+        protected GeneralDead genDead;
         [SerializeField]
         protected List<CharacterBehavior.BehaviorCurve> m_behaviors;
 
@@ -51,6 +53,10 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
             }
         }
 
+        public void ChangeDirection(int direction) {
+            character.xDirection = direction;
+            transform.localScale = transform.localScale = Vector3.right * transform.localScale.x * -character.xDirection + Vector3.one - Vector3.right;
+        }
         /// <summary>
         /// [必须重写]重写以实现寻找动画名对应的状态，找不到则返回null
         /// </summary>
@@ -70,6 +76,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
             go.transform.position = transform.position;
             AttackEffectController aeCtrl = go.GetComponent<AttackEffectUtility>().m_AttackEffectController;
             aeCtrl.release(this, ae);
+            TryPushAtkEffect(aeCtrl);
             ChangeState();
         }
         public virtual void DoDamage() { }
@@ -93,7 +100,11 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
                 case CharacterBehavior.BehaviorType.CanThink:
                     break;
                 default:
-                    if (character.curState != null) character.curState.end(this);
+                    if (character.curState != null)
+                    {
+                        character.curState.end(this);
+                    }
+                    m_SkeletonAnim.AnimationName = null;
                     character.curState = null;
                     break;
             }
@@ -101,10 +112,13 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
 
         protected override void init()
         {
+            transform.localScale = new Vector3(-1, 1, 1);
+            ChangeDirection(Global.GlobalValue.XDIRECTION_RIGHT);
             m_SkeletonAnim.state.Complete += OnComplete;
             character.curState = null;
-            attackEffectPool = EffectPoolManager.GetAttackEffectPoolByType(character.characterType);
+            attackEffectPool = PoolManager.instance.GetPoolByType(character.characterType);
         }
+
     }
 
 }

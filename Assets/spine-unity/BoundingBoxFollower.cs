@@ -148,6 +148,7 @@ public class BoundingBoxFollower : MonoBehaviour {
 	}
 
 	void ClearColliders () {
+        return;
 		var colliders = GetComponents<PolygonCollider2D>();
 		if (Application.isPlaying) {
 			foreach (var c in colliders) {

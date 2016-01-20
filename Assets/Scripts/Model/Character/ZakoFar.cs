@@ -17,7 +17,7 @@ namespace KGCustom.Model.Character.Enemy
             characterType = CharacterType.ZakoFar;
             m_skills.skillList = new List<AttackEffect>()
             {
-                new AttackEffect("atk_far", 5, 2.5f, 0.532f, 0f, 0, 1, 1f),
+                new AttackEffect("atk_far", 5, 2.5f, 0, 1000, 1, 3),
          };
         }
 
