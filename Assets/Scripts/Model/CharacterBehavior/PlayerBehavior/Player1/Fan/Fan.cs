@@ -10,7 +10,7 @@ namespace KGCustom.Model {
             PlayerController pc = (PlayerController)cc;
             if (pc.hitAttacks.Count != 0) {
                 Attack atk = pc.hitAttacks.Pop();
-                pc.setFanSuccess(atk.m_Releaser.transform.localScale.x, atk.m_Releaser.transform.position.x);
+                pc.setFanSuccess(atk.releaser.transform.localScale.x, atk.releaser.transform.position.x);
                 pc.hitAttacks.Clear();
             }
         }

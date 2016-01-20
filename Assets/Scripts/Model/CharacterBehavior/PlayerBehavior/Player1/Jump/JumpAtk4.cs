@@ -24,7 +24,8 @@ namespace KGCustom.Model {
             PlayerController pc = (PlayerController)cc;
             pc.m_animator.SetBool("JumpAttack", false);
             Player.instance.yDirection = Global.GlobalValue.YDIRECTION_DOWN;
-            GameObject atkEffect = (GameObject)GameObject.Instantiate(pc.AttackEffect, pc.transform.position, pc.AttackEffect.transform.rotation);
+            GameObject atkEffect = pc.attackEffectPool.Instantiate();
+            atkEffect.transform.position = pc.transform.position;
             atkEffect.GetComponent<AttackEffectUtility>().m_AttackEffectController.release(pc, pc.character.m_skills.getBySkillName("fly_atk_4"));
             atkEffect.transform.parent = pc.transform;
             pc.m_animator.SetInteger("AttackAction", 0);

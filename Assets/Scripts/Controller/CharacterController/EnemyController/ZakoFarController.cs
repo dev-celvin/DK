@@ -1,7 +1,8 @@
 ﻿using KGCustom.Model.Character.Enemy;
 using System.Collections.Generic;
-using KGCustom.Model.Behavior.EnemyBehavior.ZakoFarBehavior;
 using UnityEngine;
+using KGCustom.Model.Behavior.EnemyBehavior;
+using KGCustom.Model.Behavior.EnemyBehavior.ZakoFarBehavior;
 
 namespace KGCustom.Controller.CharacterController.EnemyController
 {
@@ -16,20 +17,18 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             {
                 if (ae.name == animName)
                 {
-                    ae.pRange = 10000;
+                    ae.hRange = 10000;
                 }
-                else ae.pRange = 0;
+                else ae.hRange = 0;
             }
         }
 #endif
         private Dictionary<string, CharacterBehavior> animToState = new Dictionary<string, CharacterBehavior>()
         {
-            { "atk_far" ,new ATK_Far() },
-            { "dmg_1", new Damage() },
-            { "dmg_2", new Damage2() },
-            { "move",  new Move() },
-            { "idle", new Idle()},
-            { "dead", new Dead()},
+            { "atk_far" ,new ATK_FAR() },
+            { "move",  new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink, 3) },
+            { "idle", new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink)},
+            { "dead", new GeneralDamage()},
         };
 
         void Start()
@@ -65,6 +64,9 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         protected override void init()
         {
             character = new ZakoFar();
+            genDamge = new GeneralDamage();
+            animToState["dmg_1"] = genDamge;
+            animToState["dmg_2"] = genDamge;
             for (int i = 0; i < m_behaviors.Count; i++)
             {
                 if (animToState.ContainsKey(m_behaviors[i].animName))
@@ -75,7 +77,6 @@ namespace KGCustom.Controller.CharacterController.EnemyController
                 }
                 else Debug.LogError("动画名" + m_behaviors[i].animName + "不存在");
             }
-            character.xDirection = Global.GlobalValue.XDIRECTION_RIGHT;
             transform.localScale = Vector3.right * transform.localScale.x * -character.xDirection + Vector3.one - Vector3.right;
             base.init();
         }
@@ -83,11 +84,10 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         public override void DoDamage()
         {
             Model.Attack atk = hitAttacks.Pop();
-            character.hp -= atk.m_AttackEffect.getDamageValue();
-
-            character.xDirection = -atk.direction;
-            transform.localScale = new Vector3(-character.xDirection, 1, 1);
-            GameObject hiteffect = (GameObject)Instantiate(HitEffect, atk.hitPos, HitEffect.transform.rotation);
+            character.hp -= atk.atkEffect.getDamageValue();
+            ChangeDirection(-atk.direction);
+            GameObject hiteffect = PoolManager.instance.GetHitEffectPool().Instantiate();
+            hiteffect.transform.position = atk.hitPos;
             hiteffect.GetComponent<HitEffect>().PlayHitEffect(3);
             if (hitAttacks.Count != 0)
             {
@@ -152,7 +152,12 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             {
                 return;
             }
-            
+            if (ae.name == "atk_far")
+            {
+                m_SkeletonAnim.AnimationName = ae.name;
+                m_SkeletonAnim.state.GetCurrent(0).loop = false;
+            }
+            else base.DoAttack(ae);
             ChangeState();
         }
 

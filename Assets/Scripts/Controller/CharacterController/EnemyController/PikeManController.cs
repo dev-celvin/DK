@@ -1,4 +1,5 @@
-﻿using KGCustom.Model.Behavior.EnemyBehavior.PikeManBehavior;
+﻿using KGCustom.Model.Behavior.EnemyBehavior;
+using KGCustom.Model.Behavior.EnemyBehavior.PikeManBehavior;
 using KGCustom.Model.Character.Enemy;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,21 +16,21 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             foreach (AttackEffect ae in character.m_skills.skillList) {
                 if (ae.name == animName)
                 {
-                    ae.pRange = 10000;
+                    ae.hRange = 10000;
                 }
-                else ae.pRange = 0;
+                else ae.hRange = 0;
             }
         }
 #endif
         private Dictionary<string, CharacterBehavior> animToState = new Dictionary<string, CharacterBehavior>()
         {
             { "atk_1" ,new ATK_1() },
-            { "atk_2", new ATK_2() },
-            { "move",  new Move() },
-            { "defence", new Defence()},
-            { "idle", new Idle()},
-            { "dead", new Dead()},
-            { "damage", new Damage()},
+            { "atk_2", new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink) },
+            { "move",  new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink) },
+            { "defence", new GeneralDefence()},
+            { "idle", new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink)},
+            { "dead", new GeneralDead()},
+            { "damage", new GeneralDamage()},
         };
 
         void Start() {
@@ -80,11 +81,10 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         public override void DoDamage()
         {
             Model.Attack atk = hitAttacks.Pop();
-            character.hp -= atk.m_AttackEffect.getDamageValue();
-            
-            character.xDirection = -atk.direction;
-            transform.localScale = new Vector3(-character.xDirection, 1, 1);
-            GameObject hiteffect = (GameObject)Instantiate(HitEffect, atk.hitPos, HitEffect.transform.rotation);
+            character.hp -= atk.atkEffect.getDamageValue();
+            ChangeDirection(-atk.direction);
+            GameObject hiteffect = PoolManager.instance.GetHitEffectPool().Instantiate();
+            hiteffect.transform.position = atk.hitPos;
             hiteffect.GetComponent<HitEffect>().PlayHitEffect(3);
             if (hitAttacks.Count != 0) {
                 DoDamage();
@@ -145,9 +145,9 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         public override void DoDefence()
         {
             Model.Attack atk = hitAttacks.Pop();
-            character.xDirection = -atk.direction;
-            transform.localScale = new Vector3(-character.xDirection, 1, 1);
-            GameObject hiteffect = (GameObject)Instantiate(HitEffect, atk.hitPos, HitEffect.transform.rotation);
+            ChangeDirection(-atk.direction);
+            GameObject hiteffect = PoolManager.instance.GetHitEffectPool().Instantiate();
+            hiteffect.transform.position = atk.hitPos;
             hiteffect.GetComponent<HitEffect>().PlayHitEffect(3);
             if (hitAttacks.Count != 0) {
                 DoDefence();

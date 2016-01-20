@@ -1,7 +1,7 @@
 ﻿using KGCustom.Model.Character.Enemy;
 using System.Collections.Generic;
-using KGCustom.Model.Behavior.EnemyBehavior.ZakoBehavior;
 using UnityEngine;
+using KGCustom.Model.Behavior.EnemyBehavior;
 
 namespace KGCustom.Controller.CharacterController.EnemyController
 {
@@ -16,20 +16,18 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             {
                 if (ae.name == animName)
                 {
-                    ae.pRange = 10000;
+                    ae.hRange = 10000;
                 }
-                else ae.pRange = 0;
+                else ae.hRange = 0;
             }
         }
 #endif
         private Dictionary<string, CharacterBehavior> animToState = new Dictionary<string, CharacterBehavior>()
         {
-            { "atk" ,new ATK() },
-            { "damage", new Damage() },
-            { "damage_2", new Damage2() },
-            { "move",  new Move() },
-            { "idle", new Idle()},
-            { "dead", new Dead()},
+            { "atk" ,new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink) },
+            { "move",  new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink, 3) },
+            { "idle", new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink)},
+            { "dead", new GeneralDead()},
         };
 
         void Start()
@@ -65,6 +63,9 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         protected override void init()
         {
             character = new Zako();
+            genDamge = new GeneralDamage();
+            animToState["damage"] = genDamge;
+            animToState["damage_2"] = genDamge;
             for (int i = 0; i < m_behaviors.Count; i++)
             {
                 if (animToState.ContainsKey(m_behaviors[i].animName))
@@ -75,19 +76,16 @@ namespace KGCustom.Controller.CharacterController.EnemyController
                 }
                 else Debug.LogError("动画名" + m_behaviors[i].animName + "不存在");
             }
-            character.xDirection = Global.GlobalValue.XDIRECTION_RIGHT;
-            transform.localScale = Vector3.right * transform.localScale.x * -character.xDirection + Vector3.one - Vector3.right;
             base.init();
         }
 
         public override void DoDamage()
         {
             Model.Attack atk = hitAttacks.Pop();
-            character.hp -= atk.m_AttackEffect.getDamageValue();
-
-            character.xDirection = -atk.direction;
+            ChangeDirection(-atk.direction);
             transform.localScale = new Vector3(-character.xDirection, 1, 1);
-            GameObject hiteffect = (GameObject)Instantiate(HitEffect, atk.hitPos, HitEffect.transform.rotation);
+            GameObject hiteffect = PoolManager.instance.GetHitEffectPool().Instantiate();
+            hiteffect.transform.position = atk.hitPos;
             hiteffect.GetComponent<HitEffect>().PlayHitEffect(3);
             if (hitAttacks.Count != 0)
             {

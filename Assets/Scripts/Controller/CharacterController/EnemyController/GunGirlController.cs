@@ -1,5 +1,4 @@
 ﻿using KGCustom.Model.Behavior.EnemyBehavior;
-using KGCustom.Model.Behavior.EnemyBehavior.GunGirlBehavior;
 using KGCustom.Model.Character.Enemy;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,21 +15,21 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             {
                 if (ae.name == animName)
                 {
-                    ae.pRange = 10000;
+                    ae.hRange = 10000;
                 }
-                else ae.pRange = 0;
+                else ae.hRange = 0;
             }
         }
 #endif
         private Dictionary<string, CharacterBehavior> animToState = new Dictionary<string, CharacterBehavior>()
         {
-            { "atk_1" ,new ATK_1() },
-            { "atk_2", new ATK_2() },
-            { "atk_3", new ATK_3() },
-            { "move",  new Move() },
-            { "damage_1", new Damage_1()},
-            { "idle", new Idle()},
-            { "dead", new Dead()},
+            { "atk_1" ,new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink) },
+            { "atk_2", new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink) },
+            { "atk_3", new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink) },
+            { "move",  new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink, 3) },
+            { "damage_1", new GeneralDamage()},
+            { "idle", new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink)},
+            { "dead", new GeneralDead()},
         };
 
         void Start()
@@ -69,27 +68,22 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         protected override void init()
         {
             character = new GunGirl();
-            m_SkeletonAnim.state.Complete += OnComplete;
             for (int i = 0; i < m_behaviors.Count; i++)
             {
                 if (animToState.ContainsKey(m_behaviors[i].animName))
                     animToState[m_behaviors[i].animName].animCurve = m_behaviors[i].curve;
                 else Debug.LogError("GunGirlController AnimationCurve Init Error: No " + m_behaviors[i].animName);
             }
-            character.xDirection = Global.GlobalValue.XDIRECTION_RIGHT;
-            transform.localScale = Vector3.right * transform.localScale.x * -character.xDirection + Vector3.one - Vector3.right;
-            character.curState = null;
-            attackEffectPool = EffectPoolManager.GetAttackEffectPoolByType(character.characterType);
+            base.init();
         }
 
         public override void DoDamage()
         {
             Model.Attack atk = hitAttacks.Pop();
-            character.hp -= atk.m_AttackEffect.getDamageValue();
-
-            character.xDirection = -atk.direction;
-            transform.localScale = new Vector3(-character.xDirection, 1, 1);
-            GameObject hiteffect = (GameObject)Instantiate(HitEffect, atk.hitPos, HitEffect.transform.rotation);
+            character.hp -= atk.atkEffect.getDamageValue();
+            ChangeDirection(-atk.direction);
+            GameObject hiteffect = PoolManager.instance.GetHitEffectPool().Instantiate();
+            hiteffect.transform.position = atk.hitPos;
             hiteffect.GetComponent<HitEffect>().PlayHitEffect(3);
             if (hitAttacks.Count != 0)
             {
@@ -149,27 +143,6 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             }
             base.DoAttack(ae);
         }
-
-        //public override void DoDefence()
-        //{
-        //    Model.Attack atk = hitAttacks.Pop();
-        //    character.xDirection = -atk.direction;
-        //    transform.localScale = new Vector3(-character.xDirection, 1, 1);
-        //    GameObject hiteffect = (GameObject)Instantiate(HitEffect, atk.hitPos, HitEffect.transform.rotation);
-        //    hiteffect.GetComponent<HitEffect>().PlayHitEffect(3);
-        //    if (hitAttacks.Count != 0)
-        //    {
-        //        DoDefence();
-        //    }
-        //    if (character.curState == animToState["def_damage"])
-        //    {
-        //        m_SkeletonAnim.state.SetAnimation(0, "def_damage", false);
-        //        return;
-        //    }
-        //    m_SkeletonAnim.AnimationName = "def_damage";
-        //    m_SkeletonAnim.state.GetCurrent(0).loop = false;
-        //    ChangeState();
-        //}
 
         protected override CharacterBehavior GetState(string animName)
         {

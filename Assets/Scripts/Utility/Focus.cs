@@ -10,7 +10,6 @@ public class Focus : MonoBehaviour
     private Vector3 tmp;
     private Vector3 goal;
     private Vector2 tarPos;
-    private float smoothSpeed = 1;
 
     void Start() {
         if (target == null) target = PlayerController.instance.headPos;

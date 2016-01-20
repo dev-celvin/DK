@@ -8,9 +8,6 @@ public class Player : Character {
 
     public float rage { get; set; }
     public float rageMax { get; set; }
-
-    
-
     public float moveDragRate {
         get; set;
     }
@@ -28,7 +25,7 @@ public class Player : Character {
             new AttackEffect("atk_1", 5, 2.5f, 0.532f, 1.92f, 10, 1, 1.5f),
             new AttackEffect("atk_2", 5, 2.5f, 0.168f, 1.737f, 10, 1, 1.3f),
             new AttackEffect("atk_3", 5, 2.5f, 0.855f, 2.041f, 10, 1, 1.1f),
-            new AttackEffect("atk_4", 5, 2.5f, 0.197f, 2.721f),
+            new AttackEffect("atk_4", 5, 2.5f, 0.197f, 2.721f,10,1,1),
             new AttackEffect("skill_1", 10, 2.5f, 0.345f, 3.085f,10,1,1),
             new AttackEffect("skill_2", 10, 2.5f, 0.018f, 2.314f,10,1,1),
             new AttackEffect("skill_3", 10, 2.5f, 0, 3.62f,10,1,1),
@@ -37,11 +34,11 @@ public class Player : Character {
             new AttackEffect("skill_6", 10, 2.5f, 0.983f, 3.78f,10,1,1),
             new AttackEffect("skill_7", 10, 2.5f, 0.256f, 9.46f,10,1,1),
             new AttackEffect("skill_8", 10, 2.5f, 0.898292f, 4.461f,10,1,1),
-            new AttackEffect("run_atk", 10, 2.5f, 0.1f, 0.1f),
-            new AttackEffect("fly_atk_4", 5, 0.166f, 0.898292f, 0.91f),
-            new AttackEffect("fan", 0, 0, 0, 0)
+            new AttackEffect("run_atk", 10, 2.5f, 0.1f, 0.1f,10,1,1),
+            new AttackEffect("fly_atk_4", 5, 0.166f, 0.898292f, 0.91f,10,1,1),
+            new AttackEffect("fan", 0, 0, 0, 0,10,1,1)
         };
-        characterType = CharacterType.Player;
+        characterType = CharacterType.Player_1;
     }
 
     public static Player instance {
