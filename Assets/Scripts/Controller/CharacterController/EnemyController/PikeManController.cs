@@ -26,7 +26,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         {
             { "atk_1" ,new ATK_1() },
             { "atk_2", new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink) },
-            { "move",  new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink) },
+            { "move",  new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink, 1) },
             { "defence", new GeneralDefence()},
             { "idle", new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink)},
             { "dead", new GeneralDead()},

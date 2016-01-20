@@ -54,8 +54,9 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
         }
 
         public void ChangeDirection(int direction) {
+            if (direction == character.xDirection) return;
             character.xDirection = direction;
-            transform.localScale = transform.localScale = Vector3.right * transform.localScale.x * -character.xDirection + Vector3.one - Vector3.right;
+            transform.localScale -= (transform.localScale.x + Mathf.Abs(transform.localScale.x) * character.xDirection) * Vector3.right;
         }
         /// <summary>
         /// [必须重写]重写以实现寻找动画名对应的状态，找不到则返回null
