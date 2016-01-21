@@ -16,12 +16,27 @@ namespace KGCustom.Model.Behavior.EnemyBehavior
             behaviorType = btype;
             this.startFallTime = startFallTime;
         }
+
+        public override void begin(KGCharacterController cc)
+        {
+            if (audioClip != null)
+            {
+                KGEnemyController ec = (KGEnemyController)cc;
+                ec.PlaySound(audioClip);
+            }
+            base.begin(cc);
+        }
         public override void execute(KGCharacterController cc)
         {
             if (cc.hitAttacks.Count != 0) ((KGEnemyController)cc).DoDamage();
             base.execute(cc);
         }
 
+        public override void end(KGCharacterController cc)
+        {
+            KGEnemyController ec = (KGEnemyController)cc;
+            if(audioClip != null)ec.StopSound();
+        }
 
         protected virtual void DefencableExecute(KGCharacterController cc)
         {
@@ -65,12 +80,12 @@ namespace KGCustom.Model.Behavior.EnemyBehavior
         {
             base.end(cc);
             KGEnemyController ec = (KGEnemyController)cc;
-            ec.transform.parent.Find("Collider/General/base").GetComponent<CircleCollider2D>().enabled = false;
             GameObject.Destroy(ec.transform.parent.gameObject);
         }
     }
 
-    public class GeneralDefence : EnemyBehavior {
+    public class GeneralDefence : EnemyBehavior
+    {
         public GeneralDefence()
         {
             behaviorType = BehaviorType.CanNotThink;

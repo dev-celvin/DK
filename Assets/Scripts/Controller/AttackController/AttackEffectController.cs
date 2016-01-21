@@ -28,7 +28,6 @@ namespace KGCustom.Controller {
         {
             skeletonAnim.AnimationName = ae.name;
             skeletonAnim.timeScale = ae.timeScale;
-            rootTransform.localScale = new Vector3(releaser.transform.localScale.x, 1, 1);
             m_attack = new Attack(releaser, ae, releaser.character.xDirection);
         }
 

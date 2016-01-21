@@ -74,7 +74,13 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             //受伤动画如果没有不同的位移的话，就用同一个
             animToState["damage"] = genDamge;
             animToState["damage2"] = genDamge;
-
+            Sound sound;
+            for (int i = 0; i < soundLists.Count; i++)
+            {
+                sound = soundLists[i];
+                if (animToState.ContainsKey(sound.animName)) animToState[sound.animName].SetAudioClip(sound.audioClip);
+                else Debug.LogError("SoundLists中声音文件动画名找不到对应动画!");
+            }
             for (int i = 0; i < m_behaviors.Count; i++)
             {
                 if (animToState.ContainsKey(m_behaviors[i].animName))

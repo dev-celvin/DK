@@ -27,7 +27,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             { "atk_2", new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink) },
             { "atk_3", new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink) },
             { "move",  new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink, 3) },
-            { "damage_1", new GeneralDamage()},
+            { "damage", new GeneralDamage()},
             { "idle", new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink)},
             { "dead", new GeneralDead()},
         };
@@ -68,6 +68,13 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         protected override void init()
         {
             character = new GunGirl();
+            Sound sound;
+            for (int i = 0; i < soundLists.Count; i++)
+            {
+                sound = soundLists[i];
+                if (animToState.ContainsKey(sound.animName)) animToState[sound.animName].SetAudioClip(sound.audioClip);
+                else Debug.LogError("SoundLists中声音文件动画名找不到对应动画!");
+            }
             for (int i = 0; i < m_behaviors.Count; i++)
             {
                 if (animToState.ContainsKey(m_behaviors[i].animName))
@@ -94,12 +101,12 @@ namespace KGCustom.Controller.CharacterController.EnemyController
                 DoDead();
                 return;
             }
-            if (character.curState == animToState["damage_1"])
+            if (character.curState == animToState["damage"])
             {
-                m_SkeletonAnim.state.SetAnimation(0, "damage_1", false);
+                m_SkeletonAnim.state.SetAnimation(0, "damage", false);
                 return;
             }
-            m_SkeletonAnim.AnimationName = "damage_1";
+            m_SkeletonAnim.AnimationName = "damage";
             m_SkeletonAnim.state.GetCurrent(0).loop = false;
             ChangeState();
         }
@@ -132,6 +139,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             }
             m_SkeletonAnim.AnimationName = "move";
             m_SkeletonAnim.state.GetCurrent(0).loop = true;
+            audioSource.Play();
             ChangeState();
         }
 

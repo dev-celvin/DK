@@ -3,12 +3,15 @@
 namespace KGCustom.Model.Character.Enemy {
     public class GunGirl : Character
     {
+
+        static GunGirl m_GunGirl = null;
+
         public GunGirl()
         {
             xDirection = -Player.instance.xDirection;
             yDirection = GlobalValue.YDIRECTION_UP;
-            hp = 2000;
-            hpMax = 2000;
+            hp = 200;
+            hpMax = 200;
             mp = 100;
             mpMax = 100;
             characterType = CharacterType.GunGirl;
@@ -20,6 +23,17 @@ namespace KGCustom.Model.Character.Enemy {
          };
         }
 
+        public static GunGirl instance
+        {
+            get
+            {
+                if (m_GunGirl == null)
+                {
+                    m_GunGirl = new GunGirl();
+                }
+                return m_GunGirl;
+            }
+        }
     }
 
 }

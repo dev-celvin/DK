@@ -9,6 +9,7 @@ public class CharacterBehavior {
     [HideInInspector]
     public AnimationCurve animCurve;
     public BehaviorType behaviorType;
+    protected AudioClip audioClip;
     protected float startTime;
     public virtual void execute(KGCharacterController cc)
     {
@@ -22,6 +23,10 @@ public class CharacterBehavior {
     }
 
     public virtual void end(KGCharacterController cc) { }
+
+    public virtual void SetAudioClip(AudioClip ac) {
+        audioClip = ac;
+    }
 
     [System.Serializable]
     public enum BehaviorType {

@@ -13,7 +13,6 @@ namespace KGCustom.Controller {
         public Transform headPos;
         public Animator m_animator;            //动画机
         public SkeletonGhost skeletonGhost;            //Ghosting
-        public AudioSource audioSource;                //音源
         public string curState;
         public float curMoveRate { get; set; }
         public sbyte moveToRun { get; set; }//0代表常规状态，即无需动画过渡，1为走过渡到跑，-1为跑过渡到走
@@ -23,7 +22,7 @@ namespace KGCustom.Controller {
         "jump_flying", "jump_falling", "jump_over", "flying_atk_4", "AttackSelect",
         "atk_1", "atk_2", "atk_3", "atk_4", "atk_over", "SkillSelect", "skill_1",
         "skill_2", "skill_3", "skill_4", "skill_5", "skill_6", "skill_7", "skill_8",
-        "def", "def_success", "damage", "damage_over", "fan", "fan_start"
+        "def", "def_success", "damage", "damage_over","damage_dead", "fan", "fan_start"
          };
 
         void Awake() {
@@ -200,6 +199,9 @@ namespace KGCustom.Controller {
                 case "fan_start":
                     Player.instance.curState = FanStart.instance;
                     break;
+                case "damage_dead":
+                    Player.instance.curState = DamageDead.instance;
+                    break;      
                 default:
                     Player.instance.curState = Default.instance;
                     break;
@@ -263,7 +265,7 @@ namespace KGCustom.Controller {
             Player.instance.xDirection = (int)-direction;
             GameObject atkEffect = attackEffectPool.Instantiate();
             atkEffect.transform.position = transform.position;
-            atkEffect.GetComponent<AttackEffectController>().release(this, character.m_skills.getBySkillName("fan"));
+            atkEffect.GetComponent<AttackEffectUtility>().m_AttackEffectController.release(this, character.m_skills.getBySkillName("fan"));
             atkEffect.transform.parent = transform;
             m_animator.SetTrigger("FanSuccess");
         }
@@ -314,7 +316,7 @@ namespace KGCustom.Controller {
         }
         public void CameraFocusOn()
         {
-            CameraController.Instance.SetCameraEffect(CameraMode.Focus, true, 2f, 1f, 0.5f, this.gameObject);
+            CameraController.Instance.SetCameraEffect(CameraMode.Focus, true, 2f, 0.5f, 0.5f, this.gameObject);
         }
 
         public void CameraFocusOff()
