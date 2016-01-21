@@ -1,15 +1,13 @@
 ﻿using KGCustom.Model;
 using UnityEngine;
 
-namespace KGCustom.Controller {
+namespace KGCustom.Controller
+{
     public class DataController : MonoSingleton<DataController>
     {
 
         public float JumpPower;
-        public float mp;
         public float RunSpeed;
-        public int[] skillQueue;
-        public int[] normalQueue;
         public float ShiftSpeed;
 
         public float Skill1Speed;
@@ -58,15 +56,11 @@ namespace KGCustom.Controller {
             Attack2.instance.xTransfer = NormolAttack2Speed;
             Attack3.instance.xTransfer = NormolAttack3Speed;
             Attack4.instance.xTransfer = NormolAttack4Speed;
-            mp = Player.instance.mp;
-
         }
 
         // Update is called once per frame
         void Update()
         {
-            //PlayerAttack.instance.setSkillQueue(skillQueue);
-            //PlayerAttack.instance.setNormalQueue(normalQueue);
             //实时更新用
             JumpUp.instance.yTransfer = JumpPower;
             Run.instance.xTransfer = RunSpeed;
@@ -99,7 +93,6 @@ namespace KGCustom.Controller {
             Skill6.instance.animCurve = Skill6AnimCurve;
             Skill7.instance.animCurve = Skill7AnimCurve;
             Skill8.instance.animCurve = Skill8AnimCurve;
-            Player.instance.mp = mp;
         }
     }
 }

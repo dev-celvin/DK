@@ -6,12 +6,14 @@ namespace KGCustom.Model.Character.Enemy
 {
     public class PikeMan : Character
     {
+        static PikeMan m_PikeMan = null;
+        
         public PikeMan()
         {
             xDirection = -Player.instance.xDirection;
             yDirection = GlobalValue.YDIRECTION_UP;
-            hp = 4000;
-            hpMax = 4000;
+            hp = 400;
+            hpMax = 400;
             mp = 100;
             mpMax = 100;
             characterType = CharacterType.PikeMan;
@@ -22,6 +24,17 @@ namespace KGCustom.Model.Character.Enemy
          };
         }
 
+        public static PikeMan instance
+        {
+            get
+            {
+                if (m_PikeMan == null)
+                {
+                    m_PikeMan = new PikeMan();
+                }
+                return m_PikeMan;
+            }
+        }
     }
 
 }

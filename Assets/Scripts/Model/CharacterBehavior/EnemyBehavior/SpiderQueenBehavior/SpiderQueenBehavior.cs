@@ -12,7 +12,7 @@ namespace KGCustom.Model.Behavior.EnemyBehavior.SpiderQueenBehavior
         {
             behaviorType = BehaviorType.CanNotThink;
             startFallTime = 0.5f;
-            yTransfer = 15;
+            yTransfer = 8;
         }
 
         public override void begin(KGCharacterController cc)

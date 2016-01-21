@@ -17,10 +17,10 @@ public class Player : Character {
     private Player(){
         xDirection = GlobalValue.XDIRECTION_RIGHT;
         yDirection = GlobalValue.YDIRECTION_UP;
-        hp = 1000;
-        hpMax = 1000;
-        mp = 500;
-        mpMax = 500;
+        hp = 100;
+        hpMax = 100;
+        mp = 100;
+        mpMax = 100;
         m_skills.skillList = new System.Collections.Generic.List<AttackEffect>() {
             new AttackEffect("atk_1", 5, 2.5f, 0.532f, 1.92f, 10, 1, 1.5f),
             new AttackEffect("atk_2", 5, 2.5f, 0.168f, 1.737f, 10, 1, 1.3f),

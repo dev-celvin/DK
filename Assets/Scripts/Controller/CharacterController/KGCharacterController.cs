@@ -10,6 +10,7 @@ namespace KGCustom.Controller {
         public Character character;
         public Pool attackEffectPool;
         public Rigidbody2D rigid2D;
+        public AudioSource audioSource;
         protected List<AttackEffectController> stopEffectList = new List<AttackEffectController>();
         protected bool initFinished = false;
 
