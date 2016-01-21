@@ -19,7 +19,7 @@ namespace KGCustom.Model
             Time.timeScale = 1.0f;
             pc.audioSource.pitch = 1.0f;
             UIDeadCountdown.Instance.WindowOpen();
-            GameController.Instance.Reset();
+            //GameController.Instance.Reset();
         }
     }
 }

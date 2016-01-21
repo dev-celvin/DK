@@ -31,10 +31,6 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             { "idle", new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink)},
             { "dead", new GeneralDead()},
         };
-        //Audio
-        public AudioClip[] AttackClips;
-        public AudioClip DeadClip;
-        public AudioClip QuickBackClip;
 
         void Start()
         {
@@ -72,6 +68,13 @@ namespace KGCustom.Controller.CharacterController.EnemyController
         protected override void init()
         {
             character = new GunGirl();
+            Sound sound;
+            for (int i = 0; i < soundLists.Count; i++)
+            {
+                sound = soundLists[i];
+                if (animToState.ContainsKey(sound.animName)) animToState[sound.animName].SetAudioClip(sound.audioClip);
+                else Debug.LogError("SoundLists中声音文件动画名找不到对应动画!");
+            }
             for (int i = 0; i < m_behaviors.Count; i++)
             {
                 if (animToState.ContainsKey(m_behaviors[i].animName))
@@ -115,7 +118,6 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             }
             m_SkeletonAnim.AnimationName = "dead";
             m_SkeletonAnim.state.GetCurrent(0).loop = false;
-            audioSource.PlayOneShot(DeadClip);
             ChangeState();
         }
         public override void DoIdle()
@@ -137,7 +139,6 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             }
             m_SkeletonAnim.AnimationName = "move";
             m_SkeletonAnim.state.GetCurrent(0).loop = true;
-            IsMove = true;
             audioSource.Play();
             ChangeState();
         }

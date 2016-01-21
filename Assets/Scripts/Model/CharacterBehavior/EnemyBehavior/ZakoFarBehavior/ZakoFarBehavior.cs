@@ -18,7 +18,7 @@ namespace KGCustom.Model.Behavior.EnemyBehavior.ZakoFarBehavior
 
         public override void begin(KGCharacterController cc)
         {
-            zc = (ZakoFarController)cc;
+            if(zc == null)zc = (ZakoFarController)cc;
             zc.m_SkeletonAnim.state.Event += OnEvent;
         }
 
@@ -40,7 +40,6 @@ namespace KGCustom.Model.Behavior.EnemyBehavior.ZakoFarBehavior
         public override void end(KGCharacterController cc)
         {
             zc.m_SkeletonAnim.state.Event -= OnEvent;
-            zc = null;
         }
 
     }

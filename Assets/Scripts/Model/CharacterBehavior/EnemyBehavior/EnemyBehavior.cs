@@ -16,6 +16,16 @@ namespace KGCustom.Model.Behavior.EnemyBehavior
             behaviorType = btype;
             this.startFallTime = startFallTime;
         }
+
+        public override void begin(KGCharacterController cc)
+        {
+            if (audioClip != null)
+            {
+                KGEnemyController ec = (KGEnemyController)cc;
+                ec.PlaySound(audioClip);
+            }
+            base.begin(cc);
+        }
         public override void execute(KGCharacterController cc)
         {
             if (cc.hitAttacks.Count != 0) ((KGEnemyController)cc).DoDamage();
@@ -25,11 +35,7 @@ namespace KGCustom.Model.Behavior.EnemyBehavior
         public override void end(KGCharacterController cc)
         {
             KGEnemyController ec = (KGEnemyController)cc;
-            if (ec.IsMove)
-            {
-                ec.IsMove = false;
-                ec.audioSource.Stop();
-            }
+            if(audioClip != null)ec.StopSound();
         }
 
         protected virtual void DefencableExecute(KGCharacterController cc)
@@ -78,7 +84,8 @@ namespace KGCustom.Model.Behavior.EnemyBehavior
         }
     }
 
-    public class GeneralDefence : EnemyBehavior {
+    public class GeneralDefence : EnemyBehavior
+    {
         public GeneralDefence()
         {
             behaviorType = BehaviorType.CanNotThink;

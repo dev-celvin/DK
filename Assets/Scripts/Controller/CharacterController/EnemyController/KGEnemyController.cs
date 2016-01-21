@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using KGCustom.Model.Behavior.EnemyBehavior;
+using System.Collections;
 
 namespace KGCustom.Controller.CharacterController.EnemyController {
     public abstract class KGEnemyController : KGCharacterController
@@ -26,13 +27,6 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
         }
         protected int _animIndex = -1;
 
-        protected bool isMove = false;
-
-        public bool IsMove
-        {
-            get { return isMove; }
-            set { isMove = value; }
-        }
         protected virtual void SetAnim(int index)
         {
             
@@ -41,8 +35,10 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
         /////////////////////////////////////////////
 
         public SkeletonAnimation m_SkeletonAnim;
+        public List<Sound> soundLists;
         protected GeneralDamage genDamge;
         protected GeneralDead genDead;
+        protected float soundFadeTime = 0.2f;
         [SerializeField]
         protected List<CharacterBehavior.BehaviorCurve> m_behaviors;
 
@@ -120,6 +116,8 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
 
         protected override void init()
         {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
             transform.localScale = new Vector3(-1, 1, 1);
             ChangeDirection(Global.GlobalValue.XDIRECTION_RIGHT);
             m_SkeletonAnim.state.Complete += OnComplete;
@@ -128,6 +126,33 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
 
         }
 
+        public void StopSound() {
+            StartCoroutine("SoundStop");
+        }
+
+        protected IEnumerator SoundStop() {
+            float time = soundFadeTime;
+            while (time > 0) {
+                audioSource.volume = Mathf.Lerp(0, 1, time / soundFadeTime);
+                time -= Time.deltaTime;
+                yield return 0;
+            }
+            audioSource.Stop();
+            audioSource.clip = null;
+        }
+
+        public void PlaySound(AudioClip ac) {
+            StopCoroutine("SoundStop");
+            audioSource.volume = 1;
+            audioSource.clip = ac;
+            audioSource.Play();
+        }
+    }
+
+    [System.Serializable]
+    public class Sound {
+        public string animName;
+        public AudioClip audioClip;
     }
 
 }
