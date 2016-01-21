@@ -27,10 +27,14 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             { "atk_2", new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink) },
             { "atk_3", new EnemyBehavior(CharacterBehavior.BehaviorType.CanNotThink) },
             { "move",  new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink, 3) },
-            { "damage_1", new GeneralDamage()},
+            { "damage", new GeneralDamage()},
             { "idle", new EnemyBehavior(CharacterBehavior.BehaviorType.CanThink)},
             { "dead", new GeneralDead()},
         };
+        //Audio
+        public AudioClip[] AttackClips;
+        public AudioClip DeadClip;
+        public AudioClip QuickBackClip;
 
         void Start()
         {
@@ -94,12 +98,12 @@ namespace KGCustom.Controller.CharacterController.EnemyController
                 DoDead();
                 return;
             }
-            if (character.curState == animToState["damage_1"])
+            if (character.curState == animToState["damage"])
             {
-                m_SkeletonAnim.state.SetAnimation(0, "damage_1", false);
+                m_SkeletonAnim.state.SetAnimation(0, "damage", false);
                 return;
             }
-            m_SkeletonAnim.AnimationName = "damage_1";
+            m_SkeletonAnim.AnimationName = "damage";
             m_SkeletonAnim.state.GetCurrent(0).loop = false;
             ChangeState();
         }
@@ -111,6 +115,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             }
             m_SkeletonAnim.AnimationName = "dead";
             m_SkeletonAnim.state.GetCurrent(0).loop = false;
+            audioSource.PlayOneShot(DeadClip);
             ChangeState();
         }
         public override void DoIdle()
@@ -132,6 +137,8 @@ namespace KGCustom.Controller.CharacterController.EnemyController
             }
             m_SkeletonAnim.AnimationName = "move";
             m_SkeletonAnim.state.GetCurrent(0).loop = true;
+            IsMove = true;
+            audioSource.Play();
             ChangeState();
         }
 

@@ -22,6 +22,15 @@ namespace KGCustom.Model.Behavior.EnemyBehavior
             base.execute(cc);
         }
 
+        public override void end(KGCharacterController cc)
+        {
+            KGEnemyController ec = (KGEnemyController)cc;
+            if (ec.IsMove)
+            {
+                ec.IsMove = false;
+                ec.audioSource.Stop();
+            }
+        }
 
         protected virtual void DefencableExecute(KGCharacterController cc)
         {
@@ -65,7 +74,6 @@ namespace KGCustom.Model.Behavior.EnemyBehavior
         {
             base.end(cc);
             KGEnemyController ec = (KGEnemyController)cc;
-            ec.transform.parent.Find("Collider/General/base").GetComponent<CircleCollider2D>().enabled = false;
             GameObject.Destroy(ec.transform.parent.gameObject);
         }
     }
