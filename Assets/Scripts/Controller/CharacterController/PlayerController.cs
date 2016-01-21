@@ -263,7 +263,7 @@ namespace KGCustom.Controller {
             Player.instance.xDirection = (int)-direction;
             GameObject atkEffect = attackEffectPool.Instantiate();
             atkEffect.transform.position = transform.position;
-            atkEffect.GetComponent<AttackEffectController>().release(this, character.m_skills.getBySkillName("fan"));
+            atkEffect.GetComponent<AttackEffectUtility>().m_AttackEffectController.release(this, character.m_skills.getBySkillName("fan"));
             atkEffect.transform.parent = transform;
             m_animator.SetTrigger("FanSuccess");
         }
