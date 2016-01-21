@@ -26,6 +26,13 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
         }
         protected int _animIndex = -1;
 
+        protected bool isMove = false;
+
+        public bool IsMove
+        {
+            get { return isMove; }
+            set { isMove = value; }
+        }
         protected virtual void SetAnim(int index)
         {
             
@@ -118,6 +125,7 @@ namespace KGCustom.Controller.CharacterController.EnemyController {
             m_SkeletonAnim.state.Complete += OnComplete;
             character.curState = null;
             attackEffectPool = PoolManager.instance.GetPoolByType(character.characterType);
+
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Global;
 
 public class MainScenePlayerCtrl : MonoBehaviour
 {
@@ -39,11 +40,19 @@ public class MainScenePlayerCtrl : MonoBehaviour
     {
         if (other.tag == "Main/Gate")
         {
-            StartCoroutine(LoadingScene.Instance.LoadScene("Battle"));
+            GlobalValue.LoadName = "Battle";
+            Application.LoadLevel("Loading");
         }
         if (other.tag == "Main/OldMan")
         {
             other.GetComponent<OldManTest>().TouchPlayer(true);
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Main/OldMan")
+        {
+            other.GetComponent<OldManTest>().TouchPlayer(false);
         }
     }
 }

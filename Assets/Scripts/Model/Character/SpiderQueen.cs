@@ -7,12 +7,14 @@ namespace KGCustom.Model.Character.Enemy
 {
     public class SpiderQueen : Character
     {
+        static SpiderQueen m_SpiderQueen = null;
+
         public SpiderQueen()
         {
             xDirection = -Player.instance.xDirection;
             yDirection = GlobalValue.YDIRECTION_UP;
-            hp = 3000;
-            hpMax = 3000;
+            hp = 300;
+            hpMax = 300;
             mp = 100;
             mpMax = 100;
             characterType = CharacterType.SpiderQueen;
@@ -24,7 +26,17 @@ namespace KGCustom.Model.Character.Enemy
                 new AttackEffect("atk_4", 5, 2.5f, 0.532f, 9.6f, 0, 40, 1f),
          };
         }
-
+        public static SpiderQueen instance
+        {
+            get
+            {
+                if (m_SpiderQueen == null)
+                {
+                    m_SpiderQueen = new SpiderQueen();
+                }
+                return m_SpiderQueen;
+            }
+        }
     }
 
 }

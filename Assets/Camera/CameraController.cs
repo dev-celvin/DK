@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
-public enum FaceCode { 
+public enum FaceCode
+{
     Left,
     Right,
     Up,
     Down,
 }
-public enum CameraMode { 
+public enum CameraMode
+{
     Break,
     Focus,
     Faint,
@@ -15,7 +18,8 @@ public enum CameraMode {
     Shake,
 }
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
     public static CameraController Instance;
 
     public GameObject BindingPlayer;
@@ -28,12 +32,12 @@ public class CameraController : MonoBehaviour {
     public float cameraStartSize = 2.8f;
 
     public Vector2 Location_Start;
-    [HeaderAttribute ("限制镜头移动位置(X:左 Y:右 W:上 H:下)")]
+    [HeaderAttribute("限制镜头移动位置(X:左 Y:右 W:上 H:下)")]
     public Rect Limit_Screen;
 
 
 
-    
+
     Vector2 targetoffset;//镜头跟随偏移量
     [HeaderAttribute("镜头左右偏移量")]
     public float V_offsetvalue = 3f;//偏移量数值
@@ -55,8 +59,8 @@ public class CameraController : MonoBehaviour {
 
         face = FaceCode.Right;//开始是向右看
         FaceTurn();
-        
-        transform.position = new Vector3( Location_Start.x,Location_Start.y ,transform.position.z);//初始化镜头位置
+
+        transform.position = new Vector3(Location_Start.x, Location_Start.y, transform.position.z);//初始化镜头位置
         lastCameraPoint = Location_Start;
 
         focusTransform = BindingPlayer;//开始聚焦点是主角
@@ -65,16 +69,17 @@ public class CameraController : MonoBehaviour {
     bool turning = false;//镜头转向中
     public void SetFace(FaceCode f)
     {
+
         if (face != f)
         {
             turning = true;
         }
         face = f;
-        
+
         FaceTurn();
     }
 
-    
+
     void FaceTurn()
     {
         if (face == FaceCode.Right)
@@ -96,7 +101,7 @@ public class CameraController : MonoBehaviour {
             (Mathf.Abs(transform.localPosition.y - BindingPlayer.transform.position.y + H_middlevalue) > H_offsetvalue) ? (BindingPlayer.transform.position.y - H_offsetvalue) : transform.localPosition.y);
 
 
-        bool overScreen=false;
+        bool overScreen = false;
         if ((Limit_Screen.x - targetpoint.x) > 0)
         {
             targetpoint = new Vector2(Limit_Screen.x, targetpoint.y);
@@ -110,7 +115,7 @@ public class CameraController : MonoBehaviour {
         if (Limit_Screen.width < targetpoint.y)
         {
             targetpoint = new Vector2(targetpoint.x, Limit_Screen.width);
-            
+
         }
         if (Limit_Screen.height > targetpoint.y)
         {
@@ -123,24 +128,24 @@ public class CameraController : MonoBehaviour {
 
         if (!overScreen)
         {
-            
+
             if (!turning)
             {
-                
+
                 if ((face == FaceCode.Right && transform.localPosition.x < BindingPlayer.transform.position.x) ||
                     (face == FaceCode.Left && transform.localPosition.x > BindingPlayer.transform.position.x))
                 {
-                    
+
                     transform.localPosition = new Vector3(BindingPlayer.transform.position.x, transform.localPosition.y, transform.localPosition.z);
-                    
+
                 }
                 if ((face == FaceCode.Right && transform.localPosition.x > (BindingPlayer.transform.position.x + targetoffset.x)) ||
                    (face == FaceCode.Left && transform.localPosition.x < (BindingPlayer.transform.position.x + targetoffset.x)))
                 {
-                    transform.localPosition = new Vector3(BindingPlayer.transform.position.x+targetoffset.x, transform.localPosition.y, transform.localPosition.z);
+                    transform.localPosition = new Vector3(BindingPlayer.transform.position.x + targetoffset.x, transform.localPosition.y, transform.localPosition.z);
                 }
-            
-                
+
+
             }
             else
             {
@@ -157,7 +162,7 @@ public class CameraController : MonoBehaviour {
         lastCameraPoint = transform.localPosition;
     }
 
-    bool startBlur=false;
+    bool startBlur = false;
     float blurMaxUseTime = 1f;//镜头模糊到最大所花时间
     float blurTime = 0;
     /*
@@ -196,7 +201,7 @@ public class CameraController : MonoBehaviour {
     }*/
     void BlurMode()//模糊
     {
-        
+
         if (startBlur)
         {
             BlurScreen.enabled = true;
@@ -206,32 +211,37 @@ public class CameraController : MonoBehaviour {
             }
 
         }
-        else {
+        else
+        {
             if (blurTime > 0)
             {
                 blurTime -= Time.fixedDeltaTime;
             }
-            else {
+            else
+            {
                 BlurScreen.enabled = false;
             }
-            
+
         }
-        BlurScreen._Size = Mathf.Lerp(1f, 2.5f, blurTime / blurMaxUseTime);
-        BlurScreen._Eyes = Mathf.Lerp(64f, 6f, blurTime / blurMaxUseTime);
-        BlurScreen.CenterY = (transform.position.y - BindingPlayer.transform.position.y)/GetComponent<Camera>().orthographicSize;
+        BlurScreen._Size = Mathf.Lerp(1f, 2f, blurTime / blurMaxUseTime);
+        BlurScreen._Eyes = Mathf.Lerp(64f, 10f, blurTime / blurMaxUseTime);
+        BlurScreen.CenterX = (BindingPlayer.transform.position.x - transform.position.x) / GetComponent<Camera>().orthographicSize;
+        BlurScreen.CenterX = (BlurScreen.CenterX > 1f) ? 1f : BlurScreen.CenterX;
+        BlurScreen.CenterX = (BlurScreen.CenterX < -1f) ? -1f : BlurScreen.CenterX;
+        BlurScreen.CenterY = (transform.position.y - BindingPlayer.transform.position.y) / GetComponent<Camera>().orthographicSize;
         BlurScreen.CenterY = (BlurScreen.CenterY > 1f) ? 1f : BlurScreen.CenterY;
         BlurScreen.CenterY = (BlurScreen.CenterY < -1f) ? -1f : BlurScreen.CenterY;
     }
 
-    bool startFocus=false;
+    bool startFocus = false;
     GameObject focusTransform;
     float focusSize;
     float focusDegree;
-    float focusMaxTime=0.2f;
+    float focusMaxTime = 0.2f;
     float focusTime;
     void FocusMode()//聚焦
     {
-        Vector2 focusOffset = transform.localPosition - focusTransform.transform.localPosition;
+        Vector2 focusOffset = transform.localPosition - focusTransform.transform.position;
         if (startFocus)
         {
             if (focusTime < (focusDegree * focusMaxTime))
@@ -239,24 +249,26 @@ public class CameraController : MonoBehaviour {
                 focusTime += Time.fixedDeltaTime;
             }
         }
-        else {
+        else
+        {
             if (focusTime > 0)
             {
                 focusTime -= Time.fixedDeltaTime;
             }
-            
+
         }
         transform.parent.position = new Vector2(Mathf.Lerp(0, -focusOffset.x, focusTime / focusMaxTime), 0);//只需左右移动，上下聚焦不用太刻意
         GetComponent<Camera>().orthographicSize = Mathf.Lerp(cameraStartSize, focusSize, focusTime / focusMaxTime);
     }
 
 
-    float shakeDegree=1f;
-    float shakeTime=0.2f;
+    float shakeDegree = 1f;
+    float shakeTime = 0.2f;
     void ShakeMode()//抖动
     {
+        //GetComponent<Camera> ().DOShakePosition (0.1f, 0.5f, 10, 0f);
         iTween.ShakeRotation(gameObject, iTween.Hash("z", 1f * shakeDegree, "time", shakeTime));
-        iTween.ShakePosition(gameObject.transform.parent.gameObject, new Vector3(0.1f,0.1f,0)*shakeDegree,shakeTime);
+        iTween.ShakePosition(gameObject.transform.parent.parent.gameObject, iTween.Hash("x", 0.1f * shakeDegree, "y", 0.1f * shakeDegree, "time", shakeTime, "islocal", true));
     }
 
     float faintTime = 0;
@@ -267,7 +279,8 @@ public class CameraController : MonoBehaviour {
             faintTime -= Time.fixedDeltaTime;
             FaintScreen.enabled = true;
         }
-        else {
+        else
+        {
             FaintScreen.enabled = false;
         }
     }
@@ -282,7 +295,7 @@ public class CameraController : MonoBehaviour {
 
         if (startBreak)
         {
-            if (breakTime <  breakMaxTime)
+            if (breakTime < breakMaxTime)
             {
                 breakTime += Time.fixedDeltaTime;
             }
@@ -295,12 +308,12 @@ public class CameraController : MonoBehaviour {
             }
 
         }
-        BreakScreen.effectTime = Mathf.Lerp( 0, breakDegree, breakTime / breakMaxTime);
+        BreakScreen.effectTime = Mathf.Lerp(0, breakDegree, breakTime / breakMaxTime);
     }
 
     void Start()
     {
-        
+
         Init();
     }
 
@@ -318,35 +331,35 @@ public class CameraController : MonoBehaviour {
     /// </summary>
     /// <param name="mode"></param>
     /// <param name="list"></param>
-    public void SetCameraEffect(CameraMode mode,params object[] list)
+    public void SetCameraEffect(CameraMode mode, params object[] list)
     {
-        
+
         switch (mode)
-        { 
+        {
             case CameraMode.Faint:
                 faintTime = (float)list[0];
                 break;
             case CameraMode.Blur:
                 startBlur = (bool)list[0];
-                if ((float)list[1]>0)
+                if ((float)list[1] > 0)
                     blurMaxUseTime = (float)list[1];
                 break;
             case CameraMode.Break:
                 startBreak = (bool)list[0];
                 if ((float)list[1] > 0)
-                    breakDegree=(float)list[1];
+                    breakDegree = (float)list[1];
                 if ((float)list[2] > 0)
-                    breakMaxTime =(float)list[2];
+                    breakMaxTime = (float)list[2];
                 break;
             case CameraMode.Focus:
-                startFocus=(bool)list[0];
+                startFocus = (bool)list[0];
                 if ((float)list[1] > 0)
                     focusSize = (float)list[1];
                 if ((float)list[2] > 0)
-                    focusDegree=(float)list[2];
+                    focusDegree = (float)list[2];
                 if ((float)list[3] > 0)
-                    focusMaxTime=(float)list[3];
-                if ((GameObject)list[4]!=null)
+                    focusMaxTime = (float)list[3];
+                if ((GameObject)list[4] != null)
                 {
                     focusTransform = (GameObject)list[4];
                 }
@@ -363,7 +376,7 @@ public class CameraController : MonoBehaviour {
 
     void Update()
     {
-        
+
     }
     void FixedUpdate()
     {
@@ -372,6 +385,6 @@ public class CameraController : MonoBehaviour {
         FaintMode();
         BlurMode();
         FollowSmooth();
-        
+
     }
 }

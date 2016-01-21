@@ -1,30 +1,29 @@
 ﻿using System.Collections;
+using Global;
 using UnityEngine;
 using AnimationState = Spine.AnimationState;
 
 public class StartScene : MonoBehaviour
 {
-    public GameObject TouchUI;
-    public SkeletonAnimation skeletonAnimation;
+    private GameObject TouchUI;
+    private SkeletonAnimation skeletonAnimation;
     private TweenOrthoSize tweenOrthoSize;
     private TweenPosition tweenPosition;
 
-    public UISlider processBar;
-    private AsyncOperation async;
-    private uint _nowprocess;
     // Use this for initialization
     void Start()
     {
-        _nowprocess = 0;
         tweenOrthoSize = GetComponent<TweenOrthoSize>();
         tweenPosition = GetComponent<TweenPosition>();
+        TouchUI = GameObject.Find("TouchUI");
+        skeletonAnimation = GameObject.Find("title").GetComponent<SkeletonAnimation>();
     }
 
     // Update is called once per frame
     void Update()
     {
 #if UNITY_STANDALONE_WIN
-        if (Input.GetMouseButtonDown(0) && TouchUI!= null)
+        if (Input.GetMouseButtonDown(0) && TouchUI != null)
         {
             OnTouchThePad();
         }
@@ -38,53 +37,20 @@ public class StartScene : MonoBehaviour
         
 #endif
 
-        if (async == null)
-        {
-            return;
-        }
-
-        uint toProcess;
-        if (async.progress < 0.9f)//坑爹的progress，最多到0.9f
-        {
-            toProcess = (uint)(async.progress * 100);
-        }
-        else
-        {
-            toProcess = 100;
-        }
-
-        if (_nowprocess < toProcess)
-        {
-            _nowprocess++;
-        }
-
-        processBar.value = _nowprocess / 100f;
-
-        if (_nowprocess == 100)//async.isDone应该是在场景被激活时才为true
-        {
-            async.allowSceneActivation = true;
-        }
     }
 
     public void OnTouchThePad()
     {
         Destroy(TouchUI);
         Camera.main.backgroundColor = Color.white;
-        skeletonAnimation.state.SetAnimation(0, "2", false);
-        skeletonAnimation.state.AddAnimation(0, "3", true, 2.333f).Complete +=
+        skeletonAnimation.state.SetAnimation(0, "2", false).Complete +=
             delegate(AnimationState state, int index, int count)
             {
-                StartCoroutine(LoadScene());                
+                GlobalValue.LoadName = "Main";
+                Application.LoadLevel("Loading");
             };
         tweenOrthoSize.enabled = true;
         tweenPosition.enabled = true;
-    }
-    IEnumerator LoadScene()
-    {
-        processBar.gameObject.SetActive(true);
-        async = Application.LoadLevelAsync("Main");
-        async.allowSceneActivation = false;
-        yield return async;
     }
 
 }
